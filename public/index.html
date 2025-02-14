@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Литературен Лабиринт – Escape Room</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Начален екран: показва фон и входната форма -->
+  <div id="initial-screen">
+    <div id="maze-container" class="initial">
+      <!-- Фон – празно игрално поле -->
+      <div id="maze"></div>
+    </div>
+    <div id="login-container">
+      <h2>Влезте в системата</h2>
+      <input type="text" id="username" placeholder="Потребителско име">
+      <button id="login-btn">Влез</button>
+    </div>
+  </div>
+
+  <!-- Sidebar – меню за избор на автор (ще се показва след логване) -->
+  <div id="sidebar" class="hidden">
+    <h2>Избери автор</h2>
+    <button class="author-btn" data-author="vazov">Иван Вазов</button>
+    <button class="author-btn" data-author="aleko">Алеко Константинов</button>
+    <button class="author-btn" data-author="pelin">Елин Пелин</button>
+    <button class="author-btn" data-author="yordan">Йордан Йовков</button>
+    <button class="author-btn" data-author="peyo">Пейо Яворов</button>
+    <button class="author-btn" data-author="pencho">Пенчо Славейков</button>
+    <button class="author-btn" data-author="hristo">Христо Ботев</button>
+    <button class="author-btn" data-author="dobri">Добри Чинтулов</button>
+    <button class="author-btn" data-author="obobshtenie">Обобщение</button>
+    <button id="exit-btn">Изход</button>
+  </div>
+
+  <!-- Основен екран на играта -->
+  <div id="game-container" class="hidden">
+    <header>
+      <h1>Лабиринтът</h1>
+      <div id="user-info">
+        Потребител: <span id="display-username"></span> |
+        Ниво: <span id="current-level">1</span> |
+        Точки: <span id="score">0</span> |
+        Таймер: <span id="timer">--</span>
+      </div>
+    </header>
+    <div id="game-play-area">
+      <!-- Контейнер за лабиринта -->
+      <div id="maze-container-active">
+        <div id="maze-active"></div>
+      </div>
+      <!-- Контейнер за въпросите -->
+      <div id="question-container" class="hidden">
+        <p id="question-text"></p>
+        <div id="answers"></div>
+        <button id="next-question">Следващ въпрос</button>
+      </div>
+    </div>
+    <button id="next-level" class="hidden">Напред към следващото ниво</button>
+  </div>
+</body>
+</html>
