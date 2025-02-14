@@ -3,7 +3,8 @@
 
 // Функция за извличане на въпроси за даден автор (зарежда ги от API)
 function getQuestionsForAuthor(authorName, callback) {
-  fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
+  // fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
+  fetch("https://literary-5zo2.onrender.com/api/questions?author=" + encodeURIComponent(authorName))
     .then(response => response.json())
     .then(data => callback(data))
     .catch(error => {
