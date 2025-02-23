@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход - Литературен лабиринт</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <h1>Вход в системата</h1>
+  <!-- Форма за вход – данните ще се изпратят към /login чрез POST -->
+  <form id="login-form" action="/login" method="POST">
+    <label for="username">Потребителско име:</label>
+    <input type="text" id="username" name="username" required>
+    <br><br>
+    
+    <label for="password">Парола:</label>
+    <input type="password" id="password" name="password" required>
+    <br><br>
+    
+    <button type="submit">Вход</button>
+  </form>
+  <div id="message"></div>
+  <p>Нямате акаунт? <a href="/register.html">Регистрация</a></p>
+  
+  <!-- Ако искате да използвате асинхронно обработване, може да добавите login.js -->
+  <!-- <script src="login.js"></script> -->
+</body>
+</html>

@@ -154,7 +154,6 @@ const labyrinths = {
       ]
     }
   },
-  
   veselin: {
     name: "Веселин Ханчев",
     levels: {
@@ -219,47 +218,7 @@ const labyrinths = {
         ]
       ]
     }
-  },
-  nvo2022: {
-    name: "НВО 2022",
-    levels: {
-      1: [
-        [
-          [3, 0, 1],
-          [1, 0, 4],
-          [1, 1, 1]
-        ]
-      ],
-      2: [
-        [
-          [3, 0, 1, 0],
-          [1, 0, 0, 0],
-          [1, 1, 1, 0],
-          [1, 1, 1, 4]
-        ]
-      ]
-    }
-  },
-  nvo2023: {
-    name: "НВО 2023",
-    levels: {
-      1: [
-        [
-          [3, 0, 1],
-          [1, 0, 4],
-          [1, 1, 1]
-        ]
-      ],
-      2: [
-        [
-          [3, 0, 1, 0],
-          [1, 0, 0, 0],
-          [1, 1, 1, 0],
-          [1, 1, 1, 4]
-        ]
-      ]
-    }
-  },
+  }
 };
 
 // Мапинг на кратки имена към пълно име
@@ -275,23 +234,34 @@ const authorDisplayName = {
   "obobshtenie": "Обобщение",
   "petko": "Петко Славейков",
   "lyuben": "Любен Каравелов",
-  "smirnenski": "Христо Смирненски",
-  "nvo2022": "НВО 2022",
-  "nvo2023": "НВО 2023",
-  "nvo2022": "НВО 2024"
-
+  "smirnenski": "Христо Смирненски"
 };
 
-// Функция за извличане на въпроси (примерен API)
+// Функция за извличане на въпроси (примерен API – тук използваме фиксирани данни или може да направите fetch ако имате сървър)
 function getQuestionsForAuthor(authorName, callback) {
+  // Примерно: ако няма сървър, използвайте фиксирани въпроси:
+  const sampleQuestions = [
+    {
+      id: 1,
+      question: "Кой е авторът на 'Под игото'?",
+      type: "multiple_choice",
+      options: [
+        { label: "A", option_text: "Иван Вазов", is_correct: authorName === "vazov" },
+        { label: "B", option_text: "Алеко Константинов", is_correct: false },
+        { label: "C", option_text: "Елин Пелин", is_correct: false },
+        { label: "D", option_text: "Йордан Йовков", is_correct: false }
+      ]
+    }
+  ];
+  callback(sampleQuestions);
+  // Ако имате сървър, използвайте fetch:
   // fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
-     fetch(`https://literary-5zo2.onrender.com/api/questions?author=${encodeURIComponent(authorName)}`)
-    .then(r => r.json())
-    .then(data => callback(data))
-    .catch(err => console.error("Грешка при извличане на въпроси:", err));
+  //   .then(r => r.json())
+  //   .then(data => callback(data))
+  //   .catch(err => console.error("Грешка при извличане на въпроси:", err));
 }
 
-// Инициализация на лабиринта
+// Инициализация на лабиринта за избрания автор
 function initMazeFromAuthor() {
   if (!currentAuthor) return;
   const labyrinthData = labyrinths[currentAuthor];
@@ -304,7 +274,7 @@ function initMazeFromAuthor() {
   loadMazeLevel(currentAuthor, currentLevel);
 }
 
-// Зареждане на ниво
+// Зареждане на конкретно ниво
 function loadMazeLevel(authorKey, level) {
   const levelMazes = labyrinths[authorKey].levels[level];
   if (!levelMazes) {
@@ -314,7 +284,7 @@ function loadMazeLevel(authorKey, level) {
   currentMaze = JSON.parse(JSON.stringify(levelMazes[0]));
   initRevealedMaze();
   
-  // Намираме вход (3)
+  // Намираме вход (3) в лабиринта
   for (let r = 0; r < currentMaze.length; r++) {
     for (let c = 0; c < currentMaze[r].length; c++) {
       if (currentMaze[r][c] === 3) {
@@ -329,7 +299,7 @@ function loadMazeLevel(authorKey, level) {
   });
 }
 
-// Инициализация на revealedMaze
+// Инициализация на revealedMaze – клетките, които са "открити" (0) и тези, които са "скрити" (1)
 function initRevealedMaze() {
   revealedMaze = [];
   const rows = currentMaze.length;
@@ -384,7 +354,7 @@ function renderMaze() {
   updateHeroPosition();
 }
 
-// Позициониране на героя – центриран (без offset)
+// Позициониране на героя – центриран в клетката
 function updateHeroPosition() {
   const mazeActive = document.getElementById('maze-active');
   const hero = document.getElementById('hero');
@@ -397,17 +367,15 @@ function updateHeroPosition() {
   const cellX = playerPos.col * cellWidth;
   const cellY = playerPos.row * cellHeight;
   
-  // Без изместване, за да е центриран
   hero.style.left = cellX + "px";
   hero.style.top = cellY + "px";
   hero.style.width = cellWidth + "px";
   hero.style.height = cellHeight + "px";
   hero.style.lineHeight = cellHeight + "px";
   hero.textContent = "🕵";
-  // hero.textContent = "🙂";
 }
 
-// Клик върху клетка
+// Обработка на клик върху клетка в лабиринта
 function handleCellClick(row, col) {
   if (!isAdjacent(playerPos.row, playerPos.col, row, col)) {
     alert("Можете да се движите само към съседни клетки!");
@@ -440,6 +408,7 @@ function handleCellClick(row, col) {
   });
 }
 
+// Придвижване на играча
 function movePlayer(newRow, newCol) {
   playerPos = { row: newRow, col: newCol };
   renderMaze();
@@ -450,16 +419,18 @@ function movePlayer(newRow, newCol) {
   }
 }
 
+// Функция за проверка дали клетките са съседни
 function isAdjacent(r1, c1, r2, c2) {
   return (Math.abs(r1 - r2) + Math.abs(c1 - c2)) === 1;
 }
 
+// Актуализиране на точките
 function updateScore(points) {
   score += points;
   document.getElementById('score').textContent = score;
 }
 
-// Показване на въпрос
+// Показване на въпрос в модал прозорец
 function showQuestion(onCorrect) {
   if (gameQuestions.length === 0) {
     onCorrect();
@@ -488,90 +459,177 @@ function showQuestion(onCorrect) {
       const btn = document.createElement('button');
       btn.textContent = `${opt.label}) ${opt.option_text}`;
       btn.addEventListener('click', () => {
-  if (opt.is_correct) {
-    correctSound.play().catch(err => console.error("Error playing correct sound:", err));
-    alert("Правилен отговор!");
-    gameQuestions.splice(randomIndex, 1);
-    closeQuestionModal();
-    onCorrect();
-  } else {
-    wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
-    alert("Грешен отговор! Опитайте отново.");
-  }
-});
-
+        if (opt.is_correct) {
+          correctSound.play().catch(err => console.error("Error playing correct sound:", err));
+          alert("Правилен отговор!");
+          gameQuestions.splice(randomIndex, 1);
+          closeQuestionModal();
+          onCorrect();
+        } else {
+          wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
+          alert("Грешен отговор! Опитайте отново.");
+        }
+      });
       answersDiv.appendChild(btn);
       answersDiv.appendChild(document.createElement('br'));
     });
-
-
-
-  // } else if (q.type === 'true_false') {
-  //   (q.options || []).forEach(opt => {
-  //     const btn = document.createElement('button');
-  //     btn.textContent = opt.option_text;
-  //     btn.addEventListener('click', () => {
-  //       if (opt.is_correct) {
-  //         alert("Правилен отговор!");
-  //         gameQuestions.splice(randomIndex, 1);
-  //         closeQuestionModal();
-  //         onCorrect();
-  //       } else {
-  //         alert("Грешен отговор! Опитайте отново.");
-  //       }
-  //     });
-  //     answersDiv.appendChild(btn);
-  //   });
-
-} else if (q.type === 'true_false') {
-  (q.options || []).forEach(opt => {
-    const btn = document.createElement('button');
-    btn.textContent = opt.option_text;
-    btn.addEventListener('click', () => {
-      if (opt.is_correct) {
-        correctSound.play().catch(err => console.error("Error playing correct sound:", err));
-        alert("Правилен отговор!");
-        closeQuestionModal();
-        onCorrect();
-      } else {
-        wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
-        alert("Грешен отговор! Опитайте отново.");
-      }
+  } else if (q.type === 'true_false') {
+    (q.options || []).forEach(opt => {
+      const btn = document.createElement('button');
+      btn.textContent = opt.option_text;
+      btn.addEventListener('click', () => {
+        if (opt.is_correct) {
+          correctSound.play().catch(err => console.error("Error playing correct sound:", err));
+          alert("Правилен отговор!");
+          closeQuestionModal();
+          onCorrect();
+        } else {
+          wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
+          alert("Грешен отговор! Опитайте отново.");
+        }
+      });
+      answersDiv.appendChild(btn);
     });
-    answersDiv.appendChild(btn);
-  });
-}
+  }
 }
 
+// Затваряне на модал прозореца за въпросите
 function closeQuestionModal() {
   document.getElementById('question-modal').classList.add('hidden');
 }
-// Показване на модал
-document.getElementById('nvo-btn').addEventListener('click', () => {
-  document.getElementById('nvo-modal').classList.remove('hidden');
-  document.getElementById('nvo-modal').classList.add('visible');
-});
 
-// Затваряне на модал
-document.getElementById('nvo-close-btn').addEventListener('click', () => {
-  document.getElementById('nvo-modal').classList.remove('visible');
-  document.getElementById('nvo-modal').classList.add('hidden');
-});
+// ---------- Drag & Drop функции ----------
 
-// // Обработка на избора на година
-// document.getElementById('nvo-select-btn').addEventListener('click', () => {
-//   const select = document.getElementById('nvo-year-select');
-//   const selectedKey = select.value; // напр. "nvoup2021"
-//   if (!selectedKey) {
-//     alert("Моля, изберете година!");
-//     return;
-//   }
-//   document.getElementById('nvo-modal').classList.remove('visible');
-//   document.getElementById('nvo-modal').classList.add('hidden');
-//   selectAuthor(selectedKey);
-// });
+function handleDragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.dataset.matchKey);
+  e.target.classList.add('dragging');
+}
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+}
+function handleDragOver(e) {
+  e.preventDefault();
+}
+function handleDrop(e) {
+  e.preventDefault();
+  const zone = e.target;
+  zone.classList.remove('drag-over');
+  // Не презаписваме съдържанието на зоната, за да запазим елементите
+  const draggingItem = document.querySelector('.dragging');
+  if (draggingItem) {
+    zone.appendChild(draggingItem);
+  }
+}
 
-// Drag & drop (matching)
+// BFS – функция за подсказка: намиране на първата стъпка към изхода
+function getNextStepDirection(maze, startPos) {
+  const rows = maze.length;
+  const cols = maze[0].length;
+  function isValid(r, c) {
+    return r >= 0 && r < rows && c >= 0 && c < cols && maze[r][c] !== 1;
+  }
+  const queue = [];
+  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+  queue.push({ row: startPos.row, col: startPos.col, path: [] });
+  visited[startPos.row][startPos.col] = true;
+  
+  const directions = [
+    { dr: -1, dc: 0, name: "нагоре" },
+    { dr: 1, dc: 0, name: "надолу" },
+    { dr: 0, dc: -1, name: "наляво" },
+    { dr: 0, dc: 1, name: "надясно" }
+  ];
+  
+  while (queue.length > 0) {
+    const curr = queue.shift();
+    if (maze[curr.row][curr.col] === 4) {
+      return curr.path.length > 0 ? curr.path[0] : null;
+    }
+    for (const dir of directions) {
+      const nr = curr.row + dir.dr;
+      const nc = curr.col + dir.dc;
+      if (isValid(nr, nc) && !visited[nr][nc]) {
+        visited[nr][nc] = true;
+        const newPath = [...curr.path, dir];
+        queue.push({ row: nr, col: nc, path: newPath });
+      }
+    }
+  }
+  return null;
+}
+
+// BFS – функция за намиране на кратък път до изхода
+function getShortestPathDistance(maze, startPos) {
+  const rows = maze.length;
+  const cols = maze[0].length;
+  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+  const queue = [];
+  queue.push({ row: startPos.row, col: startPos.col, dist: 0 });
+  visited[startPos.row][startPos.col] = true;
+  
+  while (queue.length > 0) {
+    const curr = queue.shift();
+    if (maze[curr.row][curr.col] === 4) {
+      return curr.dist;
+    }
+    const directions = [
+      { dr: -1, dc: 0 },
+      { dr: 1, dc: 0 },
+      { dr: 0, dc: -1 },
+      { dr: 0, dc: 1 }
+    ];
+    for (let d of directions) {
+      const nr = curr.row + d.dr;
+      const nc = curr.col + d.dc;
+      if (
+        nr >= 0 && nr < rows &&
+        nc >= 0 && nc < cols &&
+        maze[nr][nc] !== 1 &&
+        !visited[nr][nc]
+      ) {
+        visited[nr][nc] = true;
+        queue.push({ row: nr, col: nc, dist: curr.dist + 1 });
+      }
+    }
+  }
+  return Infinity;
+}
+
+// ---------- Функция за добавяне на бутона "Провери свързването" при matching въпроси ----------
+function addMatchingCheckButton(wrapper, leftCol, container, onCorrect) {
+  const checkBtn = document.createElement('button');
+  checkBtn.textContent = "Провери свързването";
+  
+  checkBtn.addEventListener('click', () => {
+    const zones = wrapper.querySelectorAll('.droppable-zone');
+    let allCorrect = true;
+    zones.forEach(zone => {
+      const draggedItem = zone.querySelector('.draggable-item');
+      if (!draggedItem || zone.dataset.matchKey !== draggedItem.dataset.matchKey) {
+        allCorrect = false;
+      }
+    });
+    
+    if (allCorrect) {
+      correctSound.play().catch(err => console.error("Error playing correct sound:", err));
+      alert("Всичко е свързано правилно!");
+      closeQuestionModal();
+      onCorrect();
+    } else {
+      wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
+      alert("Има грешки. Опитайте пак!");
+      zones.forEach(zone => {
+        const item = zone.querySelector('.draggable-item');
+        if (item) {
+          leftCol.appendChild(item);
+        }
+      });
+    }
+  });
+  container.appendChild(checkBtn);
+}
+
+// ---------- Функция за render на matching въпроси ----------
 function renderMatchingDragDrop(q, container, onCorrect) {
   const wrapper = document.createElement('div');
   wrapper.classList.add('matching-wrapper');
@@ -579,6 +637,7 @@ function renderMatchingDragDrop(q, container, onCorrect) {
   const leftCol = document.createElement('div');
   leftCol.classList.add('left-col');
   
+  // Създаваме draggable елементи
   (q.options || []).forEach(opt => {
     const item = document.createElement('div');
     item.classList.add('draggable-item');
@@ -624,186 +683,15 @@ function renderMatchingDragDrop(q, container, onCorrect) {
   wrapper.appendChild(rightCol);
   container.appendChild(wrapper);
   
-  const checkBtn = document.createElement('button');
-  checkBtn.textContent = "Провери свързването";
-  checkBtn.addEventListener('click', () => {
-    const zones = wrapper.querySelectorAll('.droppable-zone');
-    let allCorrect = true;
-    zones.forEach(zone => {
-      const draggedItem = zone.querySelector('.draggable-item');
-      if (!draggedItem || zone.dataset.matchKey !== draggedItem.dataset.matchKey) {
-        allCorrect = false;
-      }
-    });
-    // if (allCorrect) {
-    //   alert("Всичко е свързано правилно!");
-    //   closeQuestionModal();
-    //   onCorrect();
-    // } else {
-    //   alert("Има грешки. Опитайте пак!");
-    //   zones.forEach(zone => {
-    //     const item = zone.querySelector('.draggable-item');
-    //     if (item) {
-    //       leftCol.appendChild(item);
-    //     }
-    //   });
-    // }
-    if (allCorrect) {
-      correctSound.play().catch(err => console.error("Error playing correct sound:", err));
-      alert("Всичко е свързано правилно!");
-      closeQuestionModal();
-      onCorrect();
-    } else {
-      wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
-      alert("Има грешки. Опитайте пак!");
-      zones.forEach(zone => {
-        const item = zone.querySelector('.draggable-item');
-        if (item) {
-          leftCol.appendChild(item);
-        }
-      });
-    }
-    
-  });
-  container.appendChild(checkBtn);
+  // Добавяме бутона "Провери свързването" за този matching въпрос
+  addMatchingCheckButton(wrapper, leftCol, container, onCorrect);
 }
 
-// Drag & drop
-function handleDragStart(e) {
-  e.dataTransfer.setData('text/plain', e.target.dataset.matchKey);
-  e.target.classList.add('dragging');
-}
-function handleDragEnd(e) {
-  e.target.classList.remove('dragging');
-}
-function handleDragOver(e) {
-  e.preventDefault();
-}
-function handleDrop(e) {
-  e.preventDefault();
-  const zone = e.target;
-  zone.classList.remove('drag-over');
-  // const zoneText = zone.textContent;
-  // zone.innerHTML = zoneText;
-  const draggingItem = document.querySelector('.dragging');
-  if (draggingItem) {
-    zone.appendChild(draggingItem);
-  }
-}
-
-// BFS – подсказка
-function getNextStepDirection(maze, startPos) {
-  const rows = maze.length;
-  const cols = maze[0].length;
-  function isValid(r, c) {
-    return r >= 0 && r < rows && c >= 0 && c < cols && maze[r][c] !== 1;
-  }
-  const queue = [];
-  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
-  queue.push({ row: startPos.row, col: startPos.col, path: [] });
-  visited[startPos.row][startPos.col] = true;
-  
-  const directions = [
-    { dr: -1, dc: 0, name: "нагоре" },
-    { dr: 1, dc: 0, name: "надолу" },
-    { dr: 0, dc: -1, name: "наляво" },
-    { dr: 0, dc: 1, name: "надясно" }
-  ];
-  
-  while (queue.length > 0) {
-    const curr = queue.shift();
-    if (maze[curr.row][curr.col] === 4) {
-      return curr.path.length > 0 ? curr.path[0] : null;
-    }
-    for (const dir of directions) {
-      const nr = curr.row + dir.dr;
-      const nc = curr.col + dir.dc;
-      if (isValid(nr, nc) && !visited[nr][nc]) {
-        visited[nr][nc] = true;
-        const newPath = [...curr.path, dir];
-        queue.push({ row: nr, col: nc, path: newPath });
-      }
-    }
-  }
-  return null;
-}
-
-// BFS – кратък път
-function getShortestPathDistance(maze, startPos) {
-  const rows = maze.length;
-  const cols = maze[0].length;
-  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
-  const queue = [];
-  queue.push({ row: startPos.row, col: startPos.col, dist: 0 });
-  visited[startPos.row][startPos.col] = true;
-  
-  while (queue.length > 0) {
-    const curr = queue.shift();
-    if (maze[curr.row][curr.col] === 4) {
-      return curr.dist;
-    }
-    const directions = [
-      { dr: -1, dc: 0 },
-      { dr: 1, dc: 0 },
-      { dr: 0, dc: -1 },
-      { dr: 0, dc: 1 }
-    ];
-    for (let d of directions) {
-      const nr = curr.row + d.dr;
-      const nc = curr.col + d.dc;
-      if (
-        nr >= 0 && nr < rows &&
-        nc >= 0 && nc < cols &&
-        maze[nr][nc] !== 1 &&
-        !visited[nr][nc]
-      ) {
-        visited[nr][nc] = true;
-        queue.push({ row: nr, col: nc, dist: curr.dist + 1 });
-      }
-    }
-  }
-  return Infinity;
-}
-
-// Аудио
+// ---------- Аудио ----------
 let backgroundMusic, doorSound, correctSound, wrongSound;
 
-// DOMContentLoaded
-// document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('DOMContentLoaded', () => {
-    // съществуващ код
-    
-    // Обработка за бутона "НВО"
-    document.getElementById('nvo-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('hidden');
-      nvoModal.classList.add('visible');
-    });
-  
-    // Затваряне на модала
-    document.getElementById('nvo-close-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-    });
-  
-    // Обработка за бутона "Вход" в модала за НВО
-    document.getElementById('nvo-select-btn').addEventListener('click', () => {
-      const select = document.getElementById('nvo-year-select');
-      const selectedKey = select.value; // напр. "nvo2022"
-      console.log("Избраният ключ е:", selectedKey);
-      if (!selectedKey) {
-        alert("Моля, изберете година!");
-        return;
-      }
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-      selectAuthor(selectedKey);
-    
-  
-  });
-  
+// ---------- DOMContentLoaded ----------
+document.addEventListener('DOMContentLoaded', () => {
   // Аудио инициализация
   backgroundMusic = new Audio('audio/epic-adventure.mp3');
   backgroundMusic.loop = true;
@@ -816,7 +704,7 @@ let backgroundMusic, doorSound, correctSound, wrongSound;
   wrongSound = new Audio('audio/wrong.mp3');
   wrongSound.volume = 0.5;
   
-  // Логин
+  // Логин модал
   const loginModal = document.getElementById('login-modal');
   document.getElementById('login-btn').addEventListener('click', () => {
     const username = document.getElementById('username').value.trim();
@@ -912,17 +800,14 @@ let backgroundMusic, doorSound, correctSound, wrongSound;
     currentAuthor = author;
     backgroundMusic.play();
     
-    // Скриваме екран с картите, показваме лабиринта
+    // Скриваме екрана с картите и показваме лабиринта
     document.getElementById('author-selection').classList.add('hidden');
     document.getElementById('game-container').classList.remove('hidden');
     
-    // Сменяме заглавието
+    // Обновяваме заглавието
     document.getElementById('labyrinth-title').textContent =
       "Лабиринт: " + (authorDisplayName[currentAuthor] || currentAuthor);
     
     initMazeFromAuthor();
   }
 });
-
-
-

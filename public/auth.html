@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход и Регистрация - Литературен лабиринт</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Примерни стилове за разделяне на формите */
+    .form-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .toggle-btns {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .toggle-btns button {
+      background: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .toggle-btns button.active {
+      background: #ff9900;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добре дошли в Литературен лабиринт</h1>
+  <div class="toggle-btns">
+    <button id="login-btn-tab" class="active">Вход</button>
+    <button id="register-btn-tab">Регистрация</button>
+  </div>
+  
+  <!-- Контейнер за формите -->
+  <div id="login-form-container" class="form-container">
+    <h2>Вход</h2>
+    <form id="login-form" action="/login" method="POST">
+      <label for="login-username">Потребителско име:</label>
+      <input type="text" id="login-username" name="username" required>
+      <br><br>
+      
+      <label for="login-password">Парола:</label>
+      <input type="password" id="login-password" name="password" required>
+      <br><br>
+      
+      <button type="submit">Вход</button>
+    </form>
+    <div id="login-message"></div>
+  </div>
+  
+  <div id="register-form-container" class="form-container hidden">
+    <h2>Регистрация</h2>
+    <form id="register-form">
+      <label for="reg-username">Потребителско име:</label>
+      <input type="text" id="reg-username" name="username" required>
+      <br><br>
+      
+      <label for="reg-email">Имейл:</label>
+      <input type="email" id="reg-email" name="email" required>
+      <br><br>
+      
+      <label for="reg-password">Парола:</label>
+      <input type="password" id="reg-password" name="password" required>
+      <br><br>
+      
+      <button type="submit">Регистрация</button>
+    </form>
+    <div id="register-message"></div>
+  </div>
+  
+  <script>
+    // Превключване между вход и регистрация
+    const loginTab = document.getElementById('login-btn-tab');
+    const registerTab = document.getElementById('register-btn-tab');
+    const loginContainer = document.getElementById('login-form-container');
+    const registerContainer = document.getElementById('register-form-container');
+
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('active');
+      registerTab.classList.remove('active');
+      loginContainer.classList.remove('hidden');
+      registerContainer.classList.add('hidden');
+    });
+
+    registerTab.addEventListener('click', () => {
+      registerTab.classList.add('active');
+      loginTab.classList.remove('active');
+      registerContainer.classList.remove('hidden');
+      loginContainer.classList.add('hidden');
+    });
+    
+    // Асинхронна обработка на регистрационната форма
+    document.getElementById('register-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('reg-username').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const payload = { username, email, password };
+      
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        const result = await response.text();
+        const messageDiv = document.getElementById('register-message');
+        if (response.ok) {
+          messageDiv.textContent = result;
+          messageDiv.style.color = 'green';
+        } else {
+          messageDiv.textContent = result;
+          messageDiv.style.color = 'red';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        const messageDiv = document.getElementById('register-message');
+        messageDiv.textContent = 'Грешка при регистрацията.';
+        messageDiv.style.color = 'red';
+      }
+    });
+    
+    // За вход можете да използвате стандартна форма с action="/login" или да добавите асинхронна обработка, подобно на регистрацията.
+  </script>
+</body>
+</html>

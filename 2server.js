@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// Отваряне на SQLite базата данни (mydb.db)
+// Отваряне или създаване на SQLite базата данни (mydb.db)
 const db = new sqlite3.Database(path.join(__dirname, 'mydb.db'), (err) => {
   if (err) {
     console.error('Не може да се отвори базата данни:', err.message);
@@ -17,13 +17,12 @@ const db = new sqlite3.Database(path.join(__dirname, 'mydb.db'), (err) => {
   }
 });
 
-// Създаваме таблица за потребители, ако не съществува
+// Създаване на таблица за потребители (ако не съществува)
 db.run(`CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT NOT NULL UNIQUE,
-  email TEXT NOT NULL UNIQUE,
-  password TEXT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  username TEXT UNIQUE,
+  email TEXT UNIQUE,
+  password TEXT
 )`, (err) => {
   if (err) console.error('Грешка при създаване на таблицата за потребители:', err.message);
   else console.log('Таблицата за потребители е готова.');
@@ -40,7 +39,7 @@ app.use(session({
 
 // CORS заглавки (за разработка)
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // За разработка
+  res.header("Access-Control-Allow-Origin", "*"); // За продукция ограничете това
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -55,6 +54,7 @@ app.get('/api/questions', (req, res) => {
   if (!authorName || authorName.trim().toLowerCase() === 'all' ||
       authorName.trim().toLowerCase() === 'obobshtenie' ||
       authorName.trim().toLowerCase() === 'обобщение') {
+    // Ако е обобщение, връщаме всички въпроси от всички автори
     sql = `
       SELECT q.id AS question_id, q.question, q.explanation, q.type,
              COALESCE(qo.label, '') AS label,
@@ -67,6 +67,7 @@ app.get('/api/questions', (req, res) => {
     `;
     params = [];
   } else {
+    // Връщаме въпросите за конкретния автор
     sql = `
       SELECT q.id AS question_id, q.question, q.explanation, q.type,
              COALESCE(qo.label, '') AS label,
@@ -121,20 +122,20 @@ app.post('/register', (req, res) => {
     return res.status(400).send("Моля, попълнете всички полета.");
   }
   
-  // Проверка дали потребителят вече съществува
+  // Проверка дали потребител с това име или имейл вече съществува
   db.get("SELECT * FROM users WHERE username = ? OR email = ?", [username, email], (err, row) => {
     if (err) {
-      console.error("Грешка при проверка на потребителските данни:", err.message);
-      return res.status(500).send("Възникна грешка при проверка на потребителските данни.");
+      console.error("Грешка при проверка на потребителите:", err.message);
+      return res.status(500).send("Грешка при проверка на потребителските данни.");
     }
     if (row) {
       return res.status(400).send("Потребител с това потребителско име или имейл вече съществува.");
     }
     
-    // За простота записваме паролата като plain text (В продукция използвайте хеширане, напр. с bcrypt)
+    // Записваме потребителя в базата – за елементарен пример записваме паролата като plain text (НЕ е препоръчително в продукция)
     db.run("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", [username, email, password], function(err) {
       if (err) {
-        console.error("Грешка при регистрирането:", err.message);
+        console.error("Грешка при регистриране на потребителя:", err.message);
         return res.status(500).send("Възникна грешка при регистрирането.");
       }
       res.status(200).send("Регистрацията е успешна!");
@@ -142,42 +143,7 @@ app.post('/register', (req, res) => {
   });
 });
 
-/* ---------------------- API Endpoint за вход ---------------------- */
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  
-  if (!username || !password) {
-    return res.status(400).send("Моля, попълнете всички полета.");
-  }
-  
-  // Търсим потребителя в базата данни
-  db.get("SELECT * FROM users WHERE username = ?", [username], (err, user) => {
-    if (err) {
-      console.error("Грешка при проверка на потребителските данни:", err.message);
-      return res.status(500).send("Възникна грешка при проверка на потребителските данни.");
-    }
-    
-    if (!user) {
-      return res.status(400).send("Потребителското име не съществува.");
-    }
-    
-    // Проверка на паролата (plain text, за демонстрационни цели)
-    if (password !== user.password) {
-      return res.status(400).send("Невалидна парола.");
-    }
-    
-    // Ако данните са верни, създаваме сесия
-    req.session.user = {
-      id: user.id,
-      username: user.username,
-      email: user.email
-    };
-    
-    res.status(200).send("Входът е успешен!");
-  });
-});
-
-// Сервиране на статични файлове от папката public (HTML, CSS, JS, аудио, изображения и т.н.)
+// Сервиране на статични файлове (HTML, CSS, JS) от папката public
 app.use(express.static('public'));
 
 app.listen(port, () => {
