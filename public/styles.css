@@ -328,14 +328,14 @@ html, body {
 } */
 
 /* Медийна заявка за мобилни устройства */
-@media (max-width: 768px) {
-  .droppable-zone {
+/* @media (max-width: 768px) {
+  .droppable-zone { */
     /* Ако е необходимо, адаптирайте височината/ширината */
-    width: 100%;
+    /* width: 100%; */
     /* Може да зададем минимална височина, за да са добре видими */
-    min-height: 50px;
-  }
-}
+    /* min-height: 50px; */
+  /* }
+} */
   /* .matching-right-item-row {
     flex-direction: column;
     align-items: stretch;
