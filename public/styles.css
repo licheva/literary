@@ -269,8 +269,6 @@ html, body {
   background: url("images/open-door.png") no-repeat center center;
   background-size: cover;
 }
-/* гйхкл, */
-СТАР
 /* Matching въпроси */
 .matching-wrapper {
   display: flex;
@@ -288,15 +286,6 @@ html, body {
   padding: 2px;
   background: #fafafa;
 }
-.left-col, .right-col {
-  flex: 0 0 70%;
-  min-height: 200px;
-  border: 2px solid #aaa;
-  padding: 10px;
-  background: #fafafa;
-  overflow-y: auto;  /* Добавете това, ако съдържанието става твърде високо */
-  
-}
 .droppable-zone {
   border: 2px dashed #ccc;
   padding: 10px;
@@ -312,13 +301,12 @@ html, body {
     /* Може да зададем минимална височина, за да са добре видими */
     min-height: 50px;
   }
-}
   
   .matching-right-item-row {
     flex-direction: column;
     align-items: stretch;
   }
-
+}
 .draggable-item {
   background: #f0f0f0;
   margin: 5px 0;
@@ -350,24 +338,6 @@ html, body {
 .dragging {
   opacity: 0.5;
 }
-
-
-/* Медийна заявка за малки екрани */
-@media (max-width: 768px) {
-  .matching-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .left-col, .right-col {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-  .check-btn {
-    margin: 10px auto;
-  }
-}
-
-
 /* Героят (🙂) */
 #hero {
   position: absolute;
@@ -386,38 +356,4 @@ html, body {
     aspect-ratio: 1 / 1;
     max-width: 600px;
   }
-}
-/* НВО */
-#nvo-year-select {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 16px;
-}
-#nvo-select-btn,
-#nvo-close-btn {
-  padding: 10px 20px;
-  margin: 5px;
-  font-size: 16px;
-  background: #ffcc00;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-#nvo-select-btn:hover,
-#nvo-close-btn:hover {
-  background: #ff9900;
-}
-/* Когато контейнерът е свит, задаваме фиксирана височина */
-#matching-container.collapsed {
-  max-height: 200px; /* Задайте желаната височина */
-  overflow-y: auto;
-  transition: max-height 0.3s ease;
-}
-
-/* Центриране и отстояние за бутона */
-#toggle-matching {
-  display: block;
-  margin: 10px auto;
 }

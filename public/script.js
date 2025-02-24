@@ -30,6 +30,15 @@ const labyrinths = {
           [1, 1, 1, 0],
           [1, 1, 1, 4]
         ]
+      ],
+      3: [
+        [
+          [3, 0, 1, 0],
+          [1, 0, 0, 0],
+          [1, 1, 1, 0],
+          [1, 1, 1, 0],
+          [1, 1, 1, 4]
+        ]
       ]
     }
   },
@@ -220,46 +229,6 @@ const labyrinths = {
       ]
     }
   },
-  nvo2022: {
-    name: "НВО 2022",
-    levels: {
-      1: [
-        [
-          [3, 0, 1],
-          [1, 0, 4],
-          [1, 1, 1]
-        ]
-      ],
-      2: [
-        [
-          [3, 0, 1, 0],
-          [1, 0, 0, 0],
-          [1, 1, 1, 0],
-          [1, 1, 1, 4]
-        ]
-      ]
-    }
-  },
-  nvo2023: {
-    name: "НВО 2023",
-    levels: {
-      1: [
-        [
-          [3, 0, 1],
-          [1, 0, 4],
-          [1, 1, 1]
-        ]
-      ],
-      2: [
-        [
-          [3, 0, 1, 0],
-          [1, 0, 0, 0],
-          [1, 1, 1, 0],
-          [1, 1, 1, 4]
-        ]
-      ]
-    }
-  },
 };
 
 // Мапинг на кратки имена към пълно име
@@ -275,17 +244,15 @@ const authorDisplayName = {
   "obobshtenie": "Обобщение",
   "petko": "Петко Славейков",
   "lyuben": "Любен Каравелов",
-  "smirnenski": "Христо Смирненски",
-  "nvo2022": "НВО 2022",
-  "nvo2023": "НВО 2023",
-  "nvo2022": "НВО 2024"
-
+  "smirnenski": "Христо Смирненски"
 };
 
 // Функция за извличане на въпроси (примерен API)
 function getQuestionsForAuthor(authorName, callback) {
-  // fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
-     fetch(`https://literary-5zo2.onrender.com/api/questions?author=${encodeURIComponent(authorName)}`)
+  //fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
+  
+   //fetch("https://literary-labirinth-olimpiada.onrender.com" + encodeURIComponent(authorName))
+   fetch("https://literary-labirinth-olimpiada.onrender.com/api/questions?author=" + encodeURIComponent(authorName))
     .then(r => r.json())
     .then(data => callback(data))
     .catch(err => console.error("Грешка при извличане на въпроси:", err));
@@ -460,6 +427,7 @@ function updateScore(points) {
 }
 
 // Показване на въпрос
+
 function showQuestion(onCorrect) {
   if (gameQuestions.length === 0) {
     onCorrect();
@@ -546,33 +514,8 @@ function showQuestion(onCorrect) {
 function closeQuestionModal() {
   document.getElementById('question-modal').classList.add('hidden');
 }
-// Показване на модал
-document.getElementById('nvo-btn').addEventListener('click', () => {
-  document.getElementById('nvo-modal').classList.remove('hidden');
-  document.getElementById('nvo-modal').classList.add('visible');
-});
-
-// Затваряне на модал
-document.getElementById('nvo-close-btn').addEventListener('click', () => {
-  document.getElementById('nvo-modal').classList.remove('visible');
-  document.getElementById('nvo-modal').classList.add('hidden');
-});
-
-// // Обработка на избора на година
-// document.getElementById('nvo-select-btn').addEventListener('click', () => {
-//   const select = document.getElementById('nvo-year-select');
-//   const selectedKey = select.value; // напр. "nvoup2021"
-//   if (!selectedKey) {
-//     alert("Моля, изберете година!");
-//     return;
-//   }
-//   document.getElementById('nvo-modal').classList.remove('visible');
-//   document.getElementById('nvo-modal').classList.add('hidden');
-//   selectAuthor(selectedKey);
-// });
 
 // Drag & drop (matching)
-// LLLLLL
 function renderMatchingDragDrop(q, container, onCorrect) {
   const wrapper = document.createElement('div');
   wrapper.classList.add('matching-wrapper');
@@ -666,13 +609,10 @@ function renderMatchingDragDrop(q, container, onCorrect) {
     }
     
   });
-  // wrapper.appendChild(checkBtn);
   container.appendChild(checkBtn);
 }
 
 
-
-// ЛЛЛЛ;;Л;Л 
 // Drag & drop
 function handleDragStart(e) {
   e.dataTransfer.setData('text/plain', e.target.dataset.matchKey);
@@ -688,8 +628,8 @@ function handleDrop(e) {
   e.preventDefault();
   const zone = e.target;
   zone.classList.remove('drag-over');
-  // const zoneText = zone.textContent;
-  // zone.innerHTML = zoneText;
+ // const zoneText = zone.textContent;
+ // zone.innerHTML = zoneText;
   const draggingItem = document.querySelector('.dragging');
   if (draggingItem) {
     zone.appendChild(draggingItem);
@@ -773,72 +713,8 @@ function getShortestPathDistance(maze, startPos) {
 // Аудио
 let backgroundMusic, doorSound, correctSound, wrongSound;
 
-// // DOMContentLoaded
-//   document.addEventListener('DOMContentLoaded', () => {
-//     // съществуващ код
-    
-//     // Обработка за бутона "НВО"
-//     document.getElementById('nvo-btn').addEventListener('click', () => {
-//       const nvoModal = document.getElementById('nvo-modal');
-//       nvoModal.classList.remove('hidden');
-//       nvoModal.classList.add('visible');
-//     });
-  
-//     // Затваряне на модала
-//     document.getElementById('nvo-close-btn').addEventListener('click', () => {
-//       const nvoModal = document.getElementById('nvo-modal');
-//       nvoModal.classList.remove('visible');
-//       nvoModal.classList.add('hidden');
-//     });
-  
-//     // Обработка за бутона "Вход" в модала за НВО
-//     document.getElementById('nvo-select-btn').addEventListener('click', () => {
-//       const select = document.getElementById('nvo-year-select');
-//       const selectedKey = select.value; // напр. "nvo2022"
-//       console.log("Избраният ключ е:", selectedKey);
-//       if (!selectedKey) {
-//         alert("Моля, изберете година!");
-//         return;
-//       }
-//       const nvoModal = document.getElementById('nvo-modal');
-//       nvoModal.classList.remove('visible');
-//       nvoModal.classList.add('hidden');
-//       selectAuthor(selectedKey);
-    
-  
-//   });
+// DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Обработка за бутона "НВО"
-  document.getElementById('nvo-btn').addEventListener('click', () => {
-    const nvoModal = document.getElementById('nvo-modal');
-    nvoModal.classList.remove('hidden');
-    nvoModal.classList.add('visible');
-  });
-
-  // Затваряне на модала за НВО
-  document.getElementById('nvo-close-btn').addEventListener('click', () => {
-    const nvoModal = document.getElementById('nvo-modal');
-    nvoModal.classList.remove('visible');
-    nvoModal.classList.add('hidden');
-  });
-
-  // Обработка за бутона "Вход" в модала за НВО
-  document.getElementById('nvo-select-btn').addEventListener('click', () => {
-    const select = document.getElementById('nvo-year-select');
-    const selectedKey = select.value; // напр. "nvo2022"
-    console.log("Избраният ключ е:", selectedKey);
-    if (!selectedKey) {
-      alert("Моля, изберете година!");
-      return;
-    }
-    const nvoModal = document.getElementById('nvo-modal');
-    nvoModal.classList.remove('visible');
-    nvoModal.classList.add('hidden');
-    selectAuthor(selectedKey);
-  
-});
-
-  
   // Аудио инициализация
   backgroundMusic = new Audio('audio/epic-adventure.mp3');
   backgroundMusic.loop = true;
@@ -958,6 +834,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initMazeFromAuthor();
   }
 });
-
-
-
