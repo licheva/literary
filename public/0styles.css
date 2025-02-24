@@ -294,12 +294,12 @@
   }
   
   /* Медийна заявка за мобилни устройства */
-  @media (max-width: 768px) {
-    .droppable-zone {
+  /* @media (max-width: 768px) { */
+    /* .droppable-zone { */
       /* Ако е необходимо, адаптирайте височината/ширината */
-      width: 100%;
+      /* width: 100%; */
       /* Може да зададем минимална височина, за да са добре видими */
-      min-height: 50px;
+      /* min-height: 50px;
     }
     
     .matching-right-item-row {
@@ -313,8 +313,46 @@
     padding: 5px;
     cursor: move;
     border: 1px solid #ccc;
+  } */
+/* Медийна заявка за малки екрани – под 768px:
+   Преместваме колоните вертикално, така че всяка да заема цялата ширина */
+   @media (max-width: 768px) {
+    .matching-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .left-col, .right-col {
+      flex: 0 0 auto;
+      width: 100%;
+      max-height: 200px; 
+      overflow-y: auto; /*Добавете вертикален скрол, ако съдържанието надвиши 200px */
+    }
+    .matching-wrapper > button {
+      display: block;
+      margin: 3px auto;
+    }
+  } 
+  /* Ред за matching въпросите */
+.matching-right-item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
   }
-  .matching-right-item-row {
+  .zone-label {
+    width: 220px;
+    font-weight: normal;
+  }
+  .draggable-item {
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 5px;
+    cursor: move;
+    border: 1px solid #ccc;
+  }
+  .dragging {
+    opacity: 0.5;
+  /* .matching-right-item-row {
     display: flex;
     align-items: flex-start;
     gap: 10px;
@@ -336,7 +374,7 @@
     border-color: #f00;
   }
   .dragging {
-    opacity: 0.5;
+    opacity: 0.5; */
   }
   /* Героят (🙂) */
   #hero {
@@ -357,3 +395,16 @@
       max-width: 600px;
     }
   }
+  #nvo-year-select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  #question-title {
+    font-size: 15px;    /* Намалява размера на шрифта – регулирайте според нуждите */
+    /* margin: 3px 0; */
+    margin-top: 0px;  /*    Намалява отстоянията отгоре и отдолу
+    padding: 0;         /* Премахва допълнителното вътрешно отстояние */
+  }
+  
