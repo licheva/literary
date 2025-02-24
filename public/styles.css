@@ -288,18 +288,18 @@ html, body {
 } */
  .right-col {
   flex: 0 0 50%;
-  max-height: 200px;
+ min-height: 200px;
   border: 2px solid #aaa;
-  padding: 3px;
+  padding: 5px;
   background: #fafafa;
   overflow-y:auto;  /* Добавете това, ако съдържанието става твърде високо */
   overflow-x: auto;
 }
  .left-col {
   flex: 0 0 50%;
-  max-height: 200px;
+  min-height: 200px;
   border: 2px solid #aaa;
-  padding: 2px;
+  padding: 5px;
   background: #fafafa;
   overflow-y: auto;
   overflow-x: auto;      /* Позволява хоризонтално скролиране */
@@ -359,6 +359,8 @@ html, body {
     .left-col, .right-col {
       flex: 0 0 auto;
       width: 100%;
+      max-height: 200px;
+      overflow-y: auto; /* Добавете вертикален скрол, ако съдържанието надвиши 200px */
     }
     .matching-wrapper > button {
       display: block;
