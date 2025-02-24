@@ -286,7 +286,7 @@ html, body {
   padding: 2px;
   background: #fafafa;
 }
-.left-col,.right-col {
+.left-col, .right-col {
   flex: 0 0 70%;
   min-height: 200px;
   border: 2px solid #aaa;
@@ -310,6 +310,7 @@ html, body {
     /* Може да зададем минимална височина, за да са добре видими */
     min-height: 50px;
   }
+}
   
   .matching-right-item-row {
     flex-direction: column;
