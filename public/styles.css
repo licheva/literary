@@ -288,7 +288,7 @@ html, body {
 } */
  .right-col {
   flex: 0 0 50%;
-  min-height: 150px;
+  /* min-height: 150px; */
   border: 2px solid #aaa;
   padding: 3px;
   background: #fafafa;
@@ -297,7 +297,7 @@ html, body {
 }
  .left-col {
   flex: 0 0 50%;
-  min-height: 200px;
+  /* min-height: 150px; */
   border: 2px solid #aaa;
   padding: 2px;
   background: #fafafa;
