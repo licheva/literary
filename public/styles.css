@@ -270,6 +270,8 @@ html, body {
   background-size: cover;
 }
 /* гйхкл, */
+СТАР
+/* Matching въпроси */
 .matching-wrapper {
   display: flex;
   gap: 10px;
@@ -278,44 +280,52 @@ html, body {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  flex-wrap: wrap; /* Позволява колоните да се пренасят, ако е необходимо */
 }
-
-/* Задаваме различна ширина за лявата и дясната колона */
-.left-col {
-  flex: 0 0 40%;    /* Лявата колона заема 40% */
+.left-col, .right-col {
+  width: 350px;
+  min-height: 200px;
+  border: 2px solid #aaa;
+  padding: 2px;
+  background: #fafafa;
+}
+.left-col, .right-col {
+  flex: 0 0 70%;
   min-height: 200px;
   border: 2px solid #aaa;
   padding: 10px;
   background: #fafafa;
-  overflow-y: auto;
+  overflow-y: auto;  /* Добавете това, ако съдържанието става твърде високо */
+  
 }
-
-.right-col {
-  flex: 0 0 60%;    /* Дясната колона заема 60% */
-  min-height: 200px;
-  border: 2px solid #aaa;
-  padding: 10px;
-  background: #fafafa;
-  overflow-y: auto;
-}
-
-/* Стилове за drop зоните */
 .droppable-zone {
   border: 2px dashed #ccc;
   padding: 10px;
   margin: 5px;
   box-sizing: border-box;
-  flex: 1;
-  min-height: 40px;
-  background: #fff;
-  transition: border-color 0.2s;
-}
-.droppable-zone.drag-over {
-  border-color: #f00;
 }
 
-/* Ред за matching въпросите */
+/* Медийна заявка за мобилни устройства */
+@media (max-width: 768px) {
+  .droppable-zone {
+    /* Ако е необходимо, адаптирайте височината/ширината */
+    width: 100%;
+    /* Може да зададем минимална височина, за да са добре видими */
+    min-height: 50px;
+  }
+}
+  
+  .matching-right-item-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+.draggable-item {
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 5px;
+  cursor: move;
+  border: 1px solid #ccc;
+}
 .matching-right-item-row {
   display: flex;
   align-items: flex-start;
@@ -326,22 +336,21 @@ html, body {
   width: 220px;
   font-weight: normal;
 }
-.draggable-item {
-  background: #f0f0f0;
-  margin: 5px 0;
+.droppable-zone {
+  flex: 1;
+  border: 2px dashed #ccc;
+  min-height: 40px;
   padding: 5px;
-  cursor: move;
-  border: 1px solid #ccc;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.droppable-zone.drag-over {
+  border-color: #f00;
 }
 .dragging {
   opacity: 0.5;
 }
 
-/* За бутона "Провери свързването" – ако го добавяте извън matching-wrapper */
-.check-btn {
-  display: block;
-  margin: 10px auto;
-}
 
 /* Медийна заявка за малки екрани */
 @media (max-width: 768px) {
@@ -399,4 +408,16 @@ html, body {
 #nvo-select-btn:hover,
 #nvo-close-btn:hover {
   background: #ff9900;
+}
+/* Когато контейнерът е свит, задаваме фиксирана височина */
+#matching-container.collapsed {
+  max-height: 200px; /* Задайте желаната височина */
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+
+/* Центриране и отстояние за бутона */
+#toggle-matching {
+  display: block;
+  margin: 10px auto;
 }

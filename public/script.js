@@ -773,41 +773,71 @@ function getShortestPathDistance(maze, startPos) {
 // Аудио
 let backgroundMusic, doorSound, correctSound, wrongSound;
 
-// DOMContentLoaded
-// document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('DOMContentLoaded', () => {
-    // съществуващ код
+// // DOMContentLoaded
+//   document.addEventListener('DOMContentLoaded', () => {
+//     // съществуващ код
     
-    // Обработка за бутона "НВО"
-    document.getElementById('nvo-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('hidden');
-      nvoModal.classList.add('visible');
-    });
+//     // Обработка за бутона "НВО"
+//     document.getElementById('nvo-btn').addEventListener('click', () => {
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('hidden');
+//       nvoModal.classList.add('visible');
+//     });
   
-    // Затваряне на модала
-    document.getElementById('nvo-close-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-    });
+//     // Затваряне на модала
+//     document.getElementById('nvo-close-btn').addEventListener('click', () => {
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('visible');
+//       nvoModal.classList.add('hidden');
+//     });
   
-    // Обработка за бутона "Вход" в модала за НВО
-    document.getElementById('nvo-select-btn').addEventListener('click', () => {
-      const select = document.getElementById('nvo-year-select');
-      const selectedKey = select.value; // напр. "nvo2022"
-      console.log("Избраният ключ е:", selectedKey);
-      if (!selectedKey) {
-        alert("Моля, изберете година!");
-        return;
-      }
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-      selectAuthor(selectedKey);
+//     // Обработка за бутона "Вход" в модала за НВО
+//     document.getElementById('nvo-select-btn').addEventListener('click', () => {
+//       const select = document.getElementById('nvo-year-select');
+//       const selectedKey = select.value; // напр. "nvo2022"
+//       console.log("Избраният ключ е:", selectedKey);
+//       if (!selectedKey) {
+//         alert("Моля, изберете година!");
+//         return;
+//       }
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('visible');
+//       nvoModal.classList.add('hidden');
+//       selectAuthor(selectedKey);
     
   
+//   });
+document.addEventListener('DOMContentLoaded', () => {
+  // Обработка за бутона "НВО"
+  document.getElementById('nvo-btn').addEventListener('click', () => {
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('hidden');
+    nvoModal.classList.add('visible');
   });
+
+  // Затваряне на модала за НВО
+  document.getElementById('nvo-close-btn').addEventListener('click', () => {
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('visible');
+    nvoModal.classList.add('hidden');
+  });
+
+  // Обработка за бутона "Вход" в модала за НВО
+  document.getElementById('nvo-select-btn').addEventListener('click', () => {
+    const select = document.getElementById('nvo-year-select');
+    const selectedKey = select.value; // напр. "nvo2022"
+    console.log("Избраният ключ е:", selectedKey);
+    if (!selectedKey) {
+      alert("Моля, изберете година!");
+      return;
+    }
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('visible');
+    nvoModal.classList.add('hidden');
+    selectAuthor(selectedKey);
+  
+});
+
   
   // Аудио инициализация
   backgroundMusic = new Audio('audio/epic-adventure.mp3');
