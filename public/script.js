@@ -627,7 +627,6 @@ function renderMatchingDragDrop(q, container, onCorrect) {
   
   const checkBtn = document.createElement('button');
   checkBtn.textContent = "Провери свързването";
-  checkBtn.classList.add('btn');
   checkBtn.addEventListener('click', () => {
     const zones = wrapper.querySelectorAll('.droppable-zone');
     let allCorrect = true;
@@ -637,6 +636,19 @@ function renderMatchingDragDrop(q, container, onCorrect) {
         allCorrect = false;
       }
     });
+    // if (allCorrect) {
+    //   alert("Всичко е свързано правилно!");
+    //   closeQuestionModal();
+    //   onCorrect();
+    // } else {
+    //   alert("Има грешки. Опитайте пак!");
+    //   zones.forEach(zone => {
+    //     const item = zone.querySelector('.draggable-item');
+    //     if (item) {
+    //       leftCol.appendChild(item);
+    //     }
+    //   });
+    // }
     if (allCorrect) {
       correctSound.play().catch(err => console.error("Error playing correct sound:", err));
       alert("Всичко е свързано правилно!");
@@ -652,11 +664,12 @@ function renderMatchingDragDrop(q, container, onCorrect) {
         }
       });
     }
+    
   });
-  
-  // Добавяме бутона вътре в wrapper, за да се вижда винаги
   wrapper.appendChild(checkBtn);
+  // container.appendChild(checkBtn);
 }
+
 
 
 // ЛЛЛЛ;;Л;Л 
