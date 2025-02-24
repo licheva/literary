@@ -629,7 +629,8 @@ function renderMatchingDragDrop(q, container, onCorrect) {
     }
     
   });
-  container.appendChild(checkBtn);
+  // container.appendChild(checkBtn);
+  wrapper.appendChild(checkBtn);
 }
 
 
