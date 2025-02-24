@@ -288,7 +288,7 @@ html, body {
 } */
  .right-col {
   flex: 0 0 50%;
-  max-height: 100px;
+  max-height: 180px;
   border: 2px solid #aaa;
   padding: 3px;
   background: #fafafa;
@@ -297,7 +297,7 @@ html, body {
 }
  .left-col {
   flex: 0 0 50%;
-  max-height: 100px;
+  max-height: 180px;
   border: 2px solid #aaa;
   padding: 2px;
   background: #fafafa;
@@ -434,4 +434,9 @@ html, body {
   padding: 10px;
   margin: 10px 0;
   font-size: 16px;
+}
+#question-title {
+  font-size: 18px;    /* Намалява размера на шрифта – регулирайте според нуждите */
+  margin: 5px 0;      /* Намалява отстоянията отгоре и отдолу */
+  padding: 0;         /* Премахва допълнителното вътрешно отстояние */
 }
