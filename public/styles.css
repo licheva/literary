@@ -286,8 +286,8 @@ html, body {
   padding: 2px;
   background: #fafafa;
 } */
-.left-col, .right-col {
-  flex: 0 0 100%;
+ .right-col {
+  flex: 0 0 50%;
   min-height: 150px;
   border: 2px solid #aaa;
   padding: 3px;
@@ -295,8 +295,8 @@ html, body {
   overflow-y:auto;  /* Добавете това, ако съдържанието става твърде високо */
   overflow-x: auto;
 }
-/* .left-col {
-  flex: 0 0 40%;
+ .left-col {
+  flex: 0 0 50%;
   min-height: 200px;
   border: 2px solid #aaa;
   padding: 2px;
@@ -304,15 +304,28 @@ html, body {
   overflow-y: auto;
   overflow-x: auto;      /* Позволява хоризонтално скролиране */
  
-/* } */ */
-
-
+} 
+/* Стилове за drop зоните */
 .droppable-zone {
   border: 2px dashed #ccc;
-  padding: 10px;
+  padding: 3px;
   margin: 5px;
   box-sizing: border-box;
+  flex: 1;
+  min-height: 40px;
+  background: #fff;
+  transition: border-color 0.2s;
 }
+.droppable-zone.drag-over {
+  border-color: #f00;
+}
+
+/* .droppable-zone {
+  border: 2px dashed #ccc;
+  padding: 3px;
+  margin: 5px;
+  box-sizing: border-box;
+} */
 
 /* Медийна заявка за мобилни устройства */
 @media (max-width: 768px) {
@@ -322,8 +335,8 @@ html, body {
     /* Може да зададем минимална височина, за да са добре видими */
     min-height: 50px;
   }
-  
-  .matching-right-item-row {
+}
+  /* .matching-right-item-row {
     flex-direction: column;
     align-items: stretch;
   }
@@ -334,8 +347,26 @@ html, body {
   padding: 5px;
   cursor: move;
   border: 1px solid #ccc;
-}
-.matching-right-item-row {
+} */
+
+/* Медийна заявка за малки екрани – под 768px:
+   Преместваме колоните вертикално, така че всяка да заема цялата ширина */
+   @media (max-width: 768px) {
+    .matching-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .left-col, .right-col {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+    .matching-wrapper > button {
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+/* .matching-right-item-row {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -353,8 +384,28 @@ html, body {
   background: #fff;
   transition: border-color 0.2s;
 }
-.droppable-zone.drag-over {
-  border-color: #f00;
+
+.dragging {
+  opacity: 0.5;
+} */
+
+/* Ред за matching въпросите */
+.matching-right-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.zone-label {
+  width: 220px;
+  font-weight: normal;
+}
+.draggable-item {
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 5px;
+  cursor: move;
+  border: 1px solid #ccc;
 }
 .dragging {
   opacity: 0.5;
