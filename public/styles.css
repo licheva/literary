@@ -347,11 +347,13 @@ html, body {
     flex: 0 0 auto;
     width: 100%;
   }
+  .matching-wrapper > button {
+    display: block;
+    margin: 10px auto;
+  }
+  
 }
-.matching-wrapper > button {
-  display: block;
-  margin: 10px auto;
-}
+
 
 /* Героят (🙂) */
 #hero {
