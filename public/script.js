@@ -572,24 +572,7 @@ document.getElementById('nvo-close-btn').addEventListener('click', () => {
 // });
 
 // Drag & drop (matching)
-// function renderMatchingDragDrop(q, container, onCorrect) {
-//   const wrapper = document.createElement('div');
-//   wrapper.classList.add('matching-wrapper');
-  
-//   const leftCol = document.createElement('div');
-//   leftCol.classList.add('left-col');
-  
-//   (q.options || []).forEach(opt => {
-//     const item = document.createElement('div');
-//     item.classList.add('draggable-item');
-//     item.setAttribute('draggable', 'true');
-//     item.dataset.matchKey = opt.matching_key;
-//     item.textContent = `${opt.label}) ${opt.option_text}`;
-    
-//     item.addEventListener('dragstart', handleDragStart);
-//     item.addEventListener('dragend', handleDragEnd);
-//     leftCol.appendChild(item);
-//   });
+// LLLLLL
 function renderMatchingDragDrop(q, container, onCorrect) {
   const wrapper = document.createElement('div');
   wrapper.classList.add('matching-wrapper');
@@ -674,84 +657,9 @@ function renderMatchingDragDrop(q, container, onCorrect) {
   // Добавяме бутона вътре в wrapper, за да се вижда винаги
   wrapper.appendChild(checkBtn);
 }
-// ДО ТУК
-  const rightCol = document.createElement('div');
-  rightCol.classList.add('right-col');
-  
-  let explanationText = (q.explanation || "").replace(/\\n/g, '\n');
-  const lines = explanationText.split('\n');
-  
-  lines.forEach(line => {
-    const mk = line.trim().charAt(0);
-    const row = document.createElement('div');
-    row.classList.add('matching-right-item-row');
-    
-    const zoneLabel = document.createElement('div');
-    zoneLabel.classList.add('zone-label');
-    zoneLabel.textContent = line;
-    
-    const zoneDrop = document.createElement('div');
-    zoneDrop.classList.add('droppable-zone');
-    zoneDrop.dataset.matchKey = mk;
-    
-    zoneDrop.addEventListener('dragover', handleDragOver);
-    zoneDrop.addEventListener('drop', handleDrop);
-    zoneDrop.addEventListener('dragenter', () => zoneDrop.classList.add('drag-over'));
-    zoneDrop.addEventListener('dragleave', () => zoneDrop.classList.remove('drag-over'));
-    
-    row.appendChild(zoneLabel);
-    row.appendChild(zoneDrop);
-    rightCol.appendChild(row);
-  });
-  
-  wrapper.appendChild(leftCol);
-  wrapper.appendChild(rightCol);
-  container.appendChild(wrapper);
-  
-  const checkBtn = document.createElement('button');
-  checkBtn.textContent = "Провери свързването";
-  checkBtn.addEventListener('click', () => {
-    const zones = wrapper.querySelectorAll('.droppable-zone');
-    let allCorrect = true;
-    zones.forEach(zone => {
-      const draggedItem = zone.querySelector('.draggable-item');
-      if (!draggedItem || zone.dataset.matchKey !== draggedItem.dataset.matchKey) {
-        allCorrect = false;
-      }
-    });
-    // if (allCorrect) {
-    //   alert("Всичко е свързано правилно!");
-    //   closeQuestionModal();
-    //   onCorrect();
-    // } else {
-    //   alert("Има грешки. Опитайте пак!");
-    //   zones.forEach(zone => {
-    //     const item = zone.querySelector('.draggable-item');
-    //     if (item) {
-    //       leftCol.appendChild(item);
-    //     }
-    //   });
-    // }
-    if (allCorrect) {
-      correctSound.play().catch(err => console.error("Error playing correct sound:", err));
-      alert("Всичко е свързано правилно!");
-      closeQuestionModal();
-      onCorrect();
-    } else {
-      wrongSound.play().catch(err => console.error("Error playing wrong sound:", err));
-      alert("Има грешки. Опитайте пак!");
-      zones.forEach(zone => {
-        const item = zone.querySelector('.draggable-item');
-        if (item) {
-          leftCol.appendChild(item);
-        }
-      });
-    }
-    
-  });
-  container.appendChild(checkBtn);
-}
 
+
+// ЛЛЛЛ;;Л;Л 
 // Drag & drop
 function handleDragStart(e) {
   e.dataTransfer.setData('text/plain', e.target.dataset.matchKey);
