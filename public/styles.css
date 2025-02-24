@@ -279,52 +279,42 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
-.left-col, .right-col {
-  width: 350px;
-  min-height: 200px;
-  border: 2px solid #aaa;
-  padding: 2px;
-  background: #fafafa;
-}
-.left-col, .right-col {
-  flex: 0 0 70%;
+
+/* За големи екрани задаваме лявата и дясната колона като проценти */
+.left-col {
+  flex: 0 0 40%;    /* Лявата колона заема 40% */
   min-height: 200px;
   border: 2px solid #aaa;
   padding: 10px;
   background: #fafafa;
-  overflow-y: auto;  /* Добавете това, ако съдържанието става твърде високо */
-  overflow-x: auto;
+  overflow-y: auto;
 }
+
+.right-col {
+  flex: 0 0 60%;    /* Дясната колона заема 60% */
+  min-height: 200px;
+  border: 2px solid #aaa;
+  padding: 10px;
+  background: #fafafa;
+  overflow-y: auto;
+}
+
+/* Ако drop зоните трябва да се адаптират */
 .droppable-zone {
   border: 2px dashed #ccc;
   padding: 10px;
   margin: 5px;
   box-sizing: border-box;
+  flex: 1;
+  min-height: 40px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.droppable-zone.drag-over {
+  border-color: #f00;
 }
 
-/* Медийна заявка за мобилни устройства */
-@media (max-width: 768px) {
-  .droppable-zone {
-    /* Ако е необходимо, адаптирайте височината/ширината */
-    width: 100%;
-    /* Може да зададем минимална височина, за да са добре видими */
-    min-height: 50px;
-  }
-}
-  
-  .matching-right-item-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-
-.draggable-item {
-  background: #f0f0f0;
-  margin: 5px 0;
-  padding: 5px;
-  cursor: move;
-  border: 1px solid #ccc;
-}
+/* Ред за matching въпросите – подреждане на редовете */
 .matching-right-item-row {
   display: flex;
   align-items: flex-start;
@@ -335,20 +325,30 @@ html, body {
   width: 220px;
   font-weight: normal;
 }
-.droppable-zone {
-  flex: 1;
-  border: 2px dashed #ccc;
-  min-height: 40px;
+.draggable-item {
+  background: #f0f0f0;
+  margin: 5px 0;
   padding: 5px;
-  background: #fff;
-  transition: border-color 0.2s;
-}
-.droppable-zone.drag-over {
-  border-color: #f00;
+  cursor: move;
+  border: 1px solid #ccc;
 }
 .dragging {
   opacity: 0.5;
 }
+
+/* Медийна заявка за малки екрани – под 768px
+   Преместваме колоните вертикално, така че съдържанието да заема цялата ширина */
+@media (max-width: 768px) {
+  .matching-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .left-col, .right-col {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
 /* Героят (🙂) */
 #hero {
   position: absolute;
