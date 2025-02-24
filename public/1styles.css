@@ -1,0 +1,449 @@
+/* Общи стилове */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* font-family: 'Baloo 2', cursive, sans-serif; */
+  /* Запазваме фоновото изображение */
+  background: url("images/game1.jpg") repeat center center;
+}
+
+/* Главен контейнер, за да не е fullscreen */
+#main-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.9); /* вместо #fff;
+  /* opacity: 0.9;  */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  padding: 20px;
+  min-height: 80vh;
+}
+
+
+/* Екраните */
+.screen.hidden {
+  display: none;
+}
+/* Клас за бутони */
+.btn {
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #ff9900;
+}
+/* Модални прозорци */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal.hidden {
+  display: none;
+}
+.modal.visible {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  min-width: 300px;
+  max-width: 600px;
+  border-radius: 8px;
+  text-align: center;
+}
+.wide-modal {
+  max-width: 700px;
+}
+.question-modal-content {
+  max-width: 700px;
+}
+.modal-buttons {
+  margin-top: 10px;
+}
+/* Заглавие */
+#author-selection h2 {
+  font-size: 28px;
+  background: #ffa500;
+  opacity: 0.9;
+  color: #fff;
+  margin: 0;
+  padding: 15px 0;
+  text-align: center;
+}
+.rules-btn-container {
+  margin: 10px 0;
+  text-align: center;
+}
+/* Карти (флип карти) */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(6, 140px); /* 6 фиксирани колони по 140px */
+  gap: 10px;                         /* намалява разстоянието между картите */
+  justify-content: center;           /* центрира мрежата в контейнера */
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.card {
+  width: 140px;
+  height: 210px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  overflow: hidden;
+}
+.card-front {
+  background: #fff;
+}
+.card-front img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin: 10px auto 5px auto;
+  display: block;
+}
+.portrait-text {
+  font-size: 12px;
+  margin: 0 5px;
+  text-align: center;
+  color: #333;
+}
+.card-back {
+  background: #ffecb3;
+  color: #333;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card-back p {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+/* Екран за лабиринт */
+#game-container {
+  text-align: center;
+  /* вече не е 100vh, защото сме в #main-container */
+}
+#top-bar {
+  background-color: #ffa500;
+  opacity: 0.9;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+#top-bar h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+#user-info {
+  font-size: 16px;
+  margin: 5px 0;
+}
+#button-row {
+  margin-top: 10px;
+  text-align: center;
+}
+.nav-btn {
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+.nav-btn:hover {
+  background: #ff9900;
+  transform: scale(1.05);
+}
+.nav-btn:active {
+  background: #ff8800;
+  transform: scale(0.98);
+}
+/* Лабиринт – запазваме квадратен формат, но вече е вътре в #main-container */
+#maze-container-active {
+  position: relative;
+  width: clamp(300px, 50vw, 600px);
+  aspect-ratio: 1 / 1;
+  margin: 20px auto;
+  border: 3px solid #333;
+  background: #fff;
+}
+#maze-active {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 1px;
+  background: url("images/wall.png") repeat center center;
+}
+/* Клетки */
+.cell {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  background: url("images/wall.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+.cell.path {
+  background: #cdc5ac;
+  /* opacity: 0.95; */
+}
+.cell.entrance {
+  /* background: #a0ffa0; */
+  background: #f4f4f3;
+  opacity: 0.95;
+}
+.cell.exit {
+  /* background: #ffa0a0; */
+  background: #f4f4f3;
+  opacity: 0.95;
+}
+.cell.player {
+  border: 2px solid #f00;
+}
+.cell.hint::after {
+  content: attr(data-hint);
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 16px;
+  color: #000;
+}
+@keyframes doorFullRotate {
+  0% { transform: rotateY(0deg); }
+  25% { transform: rotateY(-60deg); }
+  50% { transform: rotateY(-90deg); }
+  75% { transform: rotateY(-120deg); }
+  100% { transform: rotateY(-180deg); }
+}
+.cell.open-door {
+  transform-origin: left center;
+  animation: doorFullRotate 1.5s ease forwards;
+  background: url("images/open-door.png") no-repeat center center;
+  background-size: cover;
+}
+/* Matching въпроси */
+.matching-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 3px 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* .left-col, .right-col {
+  width: 350px;
+  min-height: 200px;
+  border: 2px solid #aaa;
+  padding: 2px;
+  background: #fafafa;
+} */
+ .right-col {
+  flex: 0 0 50%;
+ min-height: 200px;
+  border: 2px solid #aaa;
+  padding: 5px;
+  background: #fafafa;
+  overflow-y:auto;  /* Добавете това, ако съдържанието става твърде високо */
+  overflow-x: auto;
+}
+ .left-col {
+  flex: 0 0 50%;
+  min-height: 200px;
+  border: 2px solid #aaa;
+  padding: 5px;
+  background: #fafafa;
+  overflow-y: auto;
+  overflow-x: auto;      /* Позволява хоризонтално скролиране */
+ 
+} 
+/* Стилове за drop зоните */
+.droppable-zone {
+  border: 2px dashed #ccc;
+  padding: 3px;
+  margin: 5px;
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 40px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.droppable-zone.drag-over {
+  border-color: #f00;
+}
+
+/* .droppable-zone {
+  border: 2px dashed #ccc;
+  padding: 3px;
+  margin: 5px;
+  box-sizing: border-box;
+} */
+
+/* Медийна заявка за мобилни устройства */
+/* @media (max-width: 768px) {
+  .droppable-zone { */
+    /* Ако е необходимо, адаптирайте височината/ширината */
+    /* width: 100%; */
+    /* Може да зададем минимална височина, за да са добре видими */
+    /* min-height: 50px; */
+  /* }
+} */
+  /* .matching-right-item-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.draggable-item {
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 5px;
+  cursor: move;
+  border: 1px solid #ccc;
+} */
+
+/* Медийна заявка за малки екрани – под 768px:
+   Преместваме колоните вертикално, така че всяка да заема цялата ширина */
+   @media (max-width: 768px) {
+    .matching-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .left-col, .right-col {
+      flex: 0 0 auto;
+      width: 100%;
+      max-height: 200px; 
+      overflow-y: auto; /*Добавете вертикален скрол, ако съдържанието надвиши 200px */
+    }
+    .matching-wrapper > button {
+      display: block;
+      margin: 3px auto;
+    }
+  } 
+
+ 
+  
+
+
+/* .matching-right-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.zone-label {
+  width: 220px;
+  font-weight: normal;
+}
+.droppable-zone {
+  flex: 1;
+  border: 2px dashed #ccc;
+  min-height: 40px;
+  padding: 5px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.dragging {
+  opacity: 0.5;
+} */
+
+/* Ред за matching въпросите */
+.matching-right-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.zone-label {
+  width: 220px;
+  font-weight: normal;
+}
+.draggable-item {
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 5px;
+  cursor: move;
+  border: 1px solid #ccc;
+}
+.dragging {
+  opacity: 0.5;
+}
+/* Героят (🙂) */
+#hero {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  font-size: 2rem;
+  text-align: center;
+}
+/* Респонсив, ако желаете */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  #maze-container-active {
+    width: 90vw;
+    aspect-ratio: 1 / 1;
+    max-width: 600px;
+  }
+}
+#nvo-year-select {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+#question-title {
+  font-size: 15px;    /* Намалява размера на шрифта – регулирайте според нуждите */
+  /* margin: 3px 0; */
+  margin-top: 0px;  /*    Намалява отстоянията отгоре и отдолу
+  padding: 0;         /* Премахва допълнителното вътрешно отстояние */
+}
