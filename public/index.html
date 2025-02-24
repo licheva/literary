@@ -50,6 +50,7 @@
       <h2>Литературен лабиринт</h2>
       <div class="rules-btn-container">
         <button id="rules-btn" class="btn">Правила на играта</button>
+        <button id="nvo-btn" class="btn">НВО</button>
       </div>
       
       <!-- Мрежа с 12 карти. Ако искате точно 6 на ред, настройте CSS-а на .card-container -->
@@ -280,7 +281,23 @@
         </div>
       </div>
     </div>
-    
+    <!-- Модален прозорец за избор на година за НВО -->
+<div id="nvo-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Изберете година за НВО</h2>
+    <select id="nvo-year-select">
+      <option value="">-- Изберете година --</option>
+      <option value="nvo2022">НВО 2022</option>
+      <option value="nvo2023">НВО 2023</option>
+      <option value="nvo2024">НВО 2024</option>
+      <!-- Добавете още години, ако е необходимо -->
+    </select>
+    <div class="modal-buttons">
+      <button id="nvo-select-btn" class="btn">Вход</button>
+      <button id="nvo-close-btn" class="btn">Затвори</button>
+    </div>
+  </div>
+</div>
   </div><!-- #main-container -->
 </body>
 </html>
