@@ -328,30 +328,30 @@ html, body {
 } */
 
 /* Медийна заявка за мобилни устройства */
-/* @media (max-width: 768px) {
-  .droppable-zone { */
+ @media (max-width: 768px) {
+  .droppable-zone { 
     /* Ако е необходимо, адаптирайте височината/ширината */
-    /* width: 100%; */
+    width: 100%; 
     /* Може да зададем минимална височина, за да са добре видими */
-    /* min-height: 50px; */
-  /* }
-} */
-  /* .matching-right-item-row {
+     min-height: 50px; 
+  }
+} 
+   .matching-right-item-row {
     flex-direction: column;
     align-items: stretch;
   }
-}
+
 .draggable-item {
   background: #f0f0f0;
   margin: 5px 0;
   padding: 5px;
   cursor: move;
   border: 1px solid #ccc;
-} */
+} 
 
 /* Медийна заявка за малки екрани – под 768px:
-   Преместваме колоните вертикално, така че всяка да заема цялата ширина */
-   /* @media (max-width: 768px) {
+   /*Преместваме колоните вертикално, така че всяка да заема цялата ширина 
+   @media (max-width: 768px) {
     .matching-wrapper {
       flex-direction: column;
       align-items: stretch;
@@ -359,35 +359,16 @@ html, body {
     .left-col, .right-col {
       flex: 0 0 auto;
       width: 100%;
-      max-height: 200px; */
-      /* overflow-y: auto; Добавете вертикален скрол, ако съдържанието надвиши 200px */
-    /* }
+      max-height: 200px; 
+      overflow-y: auto; /*Добавете вертикален скрол, ако съдържанието надвиши 200px 
+    }
     .matching-wrapper > button {
       display: block;
       margin: 3px auto;
     }
-  } */
+  } 
 
-  @media (max-width: 768px) {
-    /* Определяме общ контейнер, който съдържа matching въпросите,
-       с фиксирана височина */
-    .matching-wrapper {
-      flex-direction: column;
-      align-items: stretch;
-     
-    }
-    /* Лявата и дясната колона ще се разтегнат, за да запълнят наличното пространство */
-    .left-col, .right-col {
-      flex: 1;          /* Позволява на колоните да растат */
-      overflow-y: auto; /* Ако съдържанието е твърде голямо, ще се появи скрол */
-      height: 200px;  /* Това е общата височина, която ще се разпредели */
-    }
-    /* Ако има бутон, който е директно дете на matching-wrapper, го центрираме */
-    .matching-wrapper > button {
-      display: block;
-      margin: 3px auto;
-    }
-  }
+ 
   
 
 
