@@ -348,6 +348,10 @@ html, body {
     width: 100%;
   }
 }
+.matching-wrapper > button {
+  display: block;
+  margin: 10px auto;
+}
 
 /* Героят (🙂) */
 #hero {
