@@ -715,9 +715,7 @@ let backgroundMusic, doorSound, correctSound, wrongSound;
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // DOMContentLoaded
-// document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('DOMContentLoaded', () => {
+ 
     // съществуващ код
     
     // Обработка за бутона "НВО"
