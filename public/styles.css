@@ -292,7 +292,7 @@ html, body {
   border: 2px solid #aaa;
   padding: 10px;
   background: #fafafa;
-  overflow-y: auto;  /* Добавете това, ако съдържанието става твърде високо */
+  overflow-y:scroll;  /* Добавете това, ако съдържанието става твърде високо */
 }
 
 .droppable-zone {
