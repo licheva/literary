@@ -286,13 +286,14 @@ html, body {
   padding: 2px;
   background: #fafafa;
 }
-.left-col, .right-col {
+ .right-col {
   flex: 0 0 70%;
   min-height: 200px;
   border: 2px solid #aaa;
   padding: 10px;
   background: #fafafa;
-  overflow-y:scroll;  /* Добавете това, ако съдържанието става твърде високо */
+  overflow-y:auto;  /* Добавете това, ако съдържанието става твърде високо */
+  overflow-x:auto;
 }
 
 .droppable-zone {
