@@ -286,16 +286,16 @@ html, body {
   padding: 2px;
   background: #fafafa;
 } */
- .right-col {
-  flex: 0 0 60%;
-  min-height: 200px;
+.left-col, .right-col {
+  flex: 0 0 50%;
+  min-height: 150px;
   border: 2px solid #aaa;
-  padding: 2px;
+  padding: 3px;
   background: #fafafa;
   overflow-y:auto;  /* Добавете това, ако съдържанието става твърде високо */
   overflow-x: auto;
 }
-.left-col {
+/* .left-col {
   flex: 0 0 40%;
   min-height: 200px;
   border: 2px solid #aaa;
@@ -304,7 +304,7 @@ html, body {
   overflow-y: auto;
   overflow-x: auto;      /* Позволява хоризонтално скролиране */
  
-}
+/* } */ */
 
 
 .droppable-zone {
