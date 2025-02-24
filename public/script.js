@@ -666,8 +666,8 @@ function renderMatchingDragDrop(q, container, onCorrect) {
     }
     
   });
-  wrapper.appendChild(checkBtn);
-  // container.appendChild(checkBtn);
+  // wrapper.appendChild(checkBtn);
+  container.appendChild(checkBtn);
 }
 
 

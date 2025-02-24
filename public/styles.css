@@ -269,7 +269,7 @@ html, body {
   background: url("images/open-door.png") no-repeat center center;
   background-size: cover;
 }
-/* Matching въпроси */
+/* гйхкл, */
 .matching-wrapper {
   display: flex;
   gap: 10px;
@@ -278,9 +278,10 @@ html, body {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  flex-wrap: wrap; /* Позволява колоните да се пренасят, ако е необходимо */
 }
 
-/* За големи екрани задаваме лявата и дясната колона като проценти */
+/* Задаваме различна ширина за лявата и дясната колона */
 .left-col {
   flex: 0 0 40%;    /* Лявата колона заема 40% */
   min-height: 200px;
@@ -299,7 +300,7 @@ html, body {
   overflow-y: auto;
 }
 
-/* Ако drop зоните трябва да се адаптират */
+/* Стилове за drop зоните */
 .droppable-zone {
   border: 2px dashed #ccc;
   padding: 10px;
@@ -314,7 +315,7 @@ html, body {
   border-color: #f00;
 }
 
-/* Ред за matching въпросите – подреждане на редовете */
+/* Ред за matching въпросите */
 .matching-right-item-row {
   display: flex;
   align-items: flex-start;
@@ -336,8 +337,13 @@ html, body {
   opacity: 0.5;
 }
 
-/* Медийна заявка за малки екрани – под 768px
-   Преместваме колоните вертикално, така че съдържанието да заема цялата ширина */
+/* За бутона "Провери свързването" – ако го добавяте извън matching-wrapper */
+.check-btn {
+  display: block;
+  margin: 10px auto;
+}
+
+/* Медийна заявка за малки екрани */
 @media (max-width: 768px) {
   .matching-wrapper {
     flex-direction: column;
@@ -347,11 +353,9 @@ html, body {
     flex: 0 0 auto;
     width: 100%;
   }
-  .matching-wrapper > button {
-    display: block;
+  .check-btn {
     margin: 10px auto;
   }
-  
 }
 
 
