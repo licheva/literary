@@ -269,7 +269,7 @@ const authorDisplayName = {
 
 // Функция за извличане на въпроси (примерен API)
 function getQuestionsForAuthor(authorName, callback) {
-  //fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
+  // fetch(`http://localhost:3000/api/questions?author=${encodeURIComponent(authorName)}`)
   
    
    fetch("https://literary-5zo2.onrender.com/api/questions?author=" + encodeURIComponent(authorName))
@@ -628,8 +628,8 @@ function renderMatchingDragDrop(q, container, onCorrect) {
       });
     }
   });
-  //  wrapper.appendChild(checkBtn);
-  container.appendChild(checkBtn);
+   wrapper.appendChild(checkBtn);
+  // container.appendChild(checkBtn);
   
 }
 
