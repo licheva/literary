@@ -345,7 +345,7 @@
     .matching-wrapper > button,
     .check-btn-container button {
       display: block;
-      margin: 5px auto;
+      margin: 3px auto;
       font-size: 12px;
       padding: 3px 6px;
     }
@@ -378,17 +378,17 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   .zone-label {
     width: 220px;
     font-weight: normal;
   }
   .droppable-zone {
-    flex: 1;
+    /* flex: 1; */
     border: 2px dashed #ccc;
     min-height: 40px;
-    padding: 5px;
+    padding: 3px;
     background: #fff;
     transition: border-color 0.2s;
   }
