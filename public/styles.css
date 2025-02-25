@@ -310,6 +310,7 @@
   @media (max-width: 768px) {
     /* Подреждане на matching въпросите вертикално */
     .matching-wrapper {
+      width: 90%;
       flex-direction: column;
       align-items: stretch;
     }
@@ -320,7 +321,7 @@
       padding: 3px;
       font-size: 12px;
       max-height: 200px;
-      flex: 1; 
+      /* flex: 1;  */
       overflow-y: auto;
       /* За ограничаване на височината:
          max-height: 200px; overflow-y: auto; */
