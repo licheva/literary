@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Baloo 2', cursive, sans-serif;
+    /* font-family: 'Baloo 2', cursive, sans-serif; */
     /* Запазваме фоновото изображение */
     background: url("images/game1.jpg") repeat center center;
   }
