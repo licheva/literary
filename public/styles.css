@@ -285,9 +285,6 @@
     border: 2px solid #aaa;
     padding: 2px;
     background: #fafafa;
-    overflow-y: auto;
-    overflow-x: auto;
-
   }
   .droppable-zone {
     border: 2px dashed #ccc;
@@ -297,142 +294,7 @@
     min-width: 50px;
     
   }
-  
-  /* Медийна заявка за мобилни устройства */
-  /* @media (max-width: 768px) { */
-    /* .droppable-zone { */
-      /* Ако е необходимо, адаптирайте височината/ширината */
-      /* width: 100%; */
-      /* Може да зададем минимална височина, за да са добре видими */
-      /* min-height: 50px;
-    }
-    
-    .matching-right-item-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  } */
-  /* @media (max-width: 768px) { */
-    /* Подреждане на matching въпросите вертикално */
-    /* .matching-wrapper {
-      width: 90%;
-      flex-direction: column;
-      align-items: stretch;
-    } */
-    
-    /* Колоните (лява и дясна) заемат цяла ширина */
-    /* .left-col, .right-col {
-      width: 100%;
-      padding: 3px;
-      font-size: 12px;
-      max-height: 200px;
-      /* flex: 1;  */
-      /* overflow-y: auto; */ */
-      /* За ограничаване на височината:
-         max-height: 200px; overflow-y: auto; */
-    /* } */
-    
-    /* Drop зоните за matching въпросите */
-    /* .droppable-zone {
-      width: 100%;
-      min-height: 50px;
-      box-sizing: border-box;
-    } */
-    
-    /* Намаляване на размера на заглавието "Въпрос" и отстоянията */
-    /* #question-title { */
-      /* font-size: 16px;  По-малък шрифт */
-      /* margin: 3px 0;    Минимални отстояния */
-      /* padding:3px 0 0 0; */
-    /* } */
-    
-    /* Центриране на бутоните (например, "Провери свързването") */
-    /* .matching-wrapper > button,
-    .check-btn-container button {
-      display: block;
-      margin: 3px auto;
-      font-size: 12px;
-      padding: 3px 6px;
-    } */
-    
-    /* Отделен контейнер за matching въпросите */
-    /* #matching-container {
-      width: 90%;
-      max-width: 350px;
-      font-size: 12px;
-      padding: 3px;
-      margin: 0 auto;
-    }
-     */
-    /* Допълнителна стилизация за елементи във matching въпросите */
-    /* .draggable-item,
-    .zone-label,
-    .droppable-zone {
-      font-size: 12px;
-    }
-  }
-  
-  .draggable-item {
-    background: #f0f0f0;
-    margin: 3px 0;
-    padding: 3px;
-    cursor: move;
-    border: 1px solid #ccc;
-  }
-  .matching-right-item-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  .zone-label {
-    width: 220px;
-    font-weight: normal;
-  }
-  .droppable-zone {
-    /* flex: 1; */
-    /* border: 2px dashed #ccc;
-    min-height: 40px;
-    padding: 3px;
-    background: #fff;
-    transition: border-color 0.2s;
-  }
-  .droppable-zone.drag-over {
-    border-color: #f00;
-  }
-  .dragging {
-    opacity: 0.5;
-  } */
-  /* Героят (🙂) */
-  #hero {
-    position: absolute;
-    z-index: 10;
-    pointer-events: none;
-    font-size: 2rem;
-    text-align: center;
-  } */
-  /* Респонсив, ако желаете */
-  /* @media (max-width: 768px) {
-    .card-container {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    #maze-container-active {
-      width: 90vw;
-      aspect-ratio: 1 / 1;
-      max-width: 600px;
-    }
-  } */
-  #nvo-year-select {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-  }
-  /* Стил за бутона за музика */
-#music-toggle-btn {
-  margin-left: 10px; /* Отстояние спрямо другите бутони */
-}
-/* Медийна заявка за средни екрани (769px до 1024px) */
+  /* Медийна заявка за средни екрани (769px до 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Контейнерът с matching въпросите остава с редово подреждане */
   .matching-wrapper {
@@ -491,62 +353,138 @@
     font-size: 14px;
   }
 }
-
-/* Медийна заявка за малки екрани (до 768px) */
-@media (max-width: 768px) {
-  /* Подреждане на matching въпросите вертикално */
-  .matching-wrapper {
-    width: 90%;
-    flex-direction: column;
-    align-items: stretch;
-    margin: 5px auto;
+  /* Медийна заявка за мобилни устройства */
+  /* @media (max-width: 768px) { */
+    /* .droppable-zone { */
+      /* Ако е необходимо, адаптирайте височината/ширината */
+      /* width: 100%; */
+      /* Може да зададем минимална височина, за да са добре видими */
+      /* min-height: 50px;
+    }
+    
+    .matching-right-item-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  } */
+  @media (max-width: 768px) {
+    /* Подреждане на matching въпросите вертикално */
+    .matching-wrapper {
+      width: 90%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    /* Колоните (лява и дясна) заемат цяла ширина */
+    .left-col, .right-col {
+      width: 100%;
+      padding: 3px;
+      font-size: 12px;
+      max-height: 200px;
+      /* flex: 1;  */
+      overflow-y: auto;
+      /* За ограничаване на височината:
+         max-height: 200px; overflow-y: auto; */
+    }
+    
+    /* Drop зоните за matching въпросите */
+    .droppable-zone {
+      width: 100%;
+      min-height: 50px;
+      box-sizing: border-box;
+    }
+    
+    /* Намаляване на размера на заглавието "Въпрос" и отстоянията */
+    #question-title {
+      font-size: 16px;  /* По-малък шрифт */
+      margin: 3px 0;    /* Минимални отстояния */
+      padding:3px 0 0 0;
+    }
+    
+    /* Центриране на бутоните (например, "Провери свързването") */
+    .matching-wrapper > button,
+    .check-btn-container button {
+      display: block;
+      margin: 3px auto;
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+    
+    /* Отделен контейнер за matching въпросите */
+    #matching-container {
+      width: 90%;
+      max-width: 350px;
+      font-size: 12px;
+      padding: 3px;
+      margin: 0 auto;
+    }
+    
+    /* Допълнителна стилизация за елементи във matching въпросите */
+    .draggable-item,
+    .zone-label,
+    .droppable-zone {
+      font-size: 12px;
+    }
   }
   
-  /* Колоните заемат цяла ширина */
-  .left-col, .right-col {
-    width: 100%;
-    padding: 3px;
-    font-size: 12px;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  /* Drop зоните – гарантира, че са 100% ширина и с минимална височина */
-  .droppable-zone {
-    width: 100%;
-    min-height: 50px;
-    box-sizing: border-box;
-  }
-  
-  /* Заглавието "Въпрос" – намаляване на размера и отстоянията */
-  #question-title {
-    font-size: 16px;
+  .draggable-item {
+    background: #f0f0f0;
     margin: 3px 0;
-    padding: 3px 0 0 0;
-  }
-  
-  /* Центриране на бутоните за проверка */
-  .matching-wrapper > button,
-  .check-btn-container button {
-    display: block;
-    margin: 3px auto;
-    font-size: 12px;
-    padding: 3px 6px;
-  }
-  
-  /* Контейнер за matching въпросите */
-  #matching-container {
-    width: 90%;
-    max-width: 350px;
-    font-size: 12px;
     padding: 3px;
-    margin: 0 auto;
+    cursor: move;
+    border: 1px solid #ccc;
   }
-  
-  .draggable-item,
-  .zone-label,
+  .matching-right-item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+  .zone-label {
+    width: 220px;
+    font-weight: normal;
+  }
   .droppable-zone {
-    font-size: 12px;
+    /* flex: 1; */
+    border: 2px dashed #ccc;
+    min-height: 40px;
+    padding: 3px;
+    background: #fff;
+    transition: border-color 0.2s;
   }
+  .droppable-zone.drag-over {
+    border-color: #f00;
+  }
+  .dragging {
+    opacity: 0.5;
+  }
+  /* Героят (🙂) */
+  #hero {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    font-size: 2rem;
+    text-align: center;
+  }
+  /* Респонсив, ако желаете */
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    #maze-container-active {
+      width: 90vw;
+      aspect-ratio: 1 / 1;
+      max-width: 600px;
+    }
+  }
+  #nvo-year-select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  /* Стил за бутона за музика */
+#music-toggle-btn {
+  margin-left: 10px; /* Отстояние спрямо другите бутони */
 }
 
