@@ -285,6 +285,9 @@
     border: 2px solid #aaa;
     padding: 2px;
     background: #fafafa;
+    overflow-y: auto;
+    overflow-x: auto;
+
   }
   .droppable-zone {
     border: 2px dashed #ccc;
@@ -309,60 +312,60 @@
       align-items: stretch;
     }
   } */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) { */
     /* Подреждане на matching въпросите вертикално */
-    .matching-wrapper {
+    /* .matching-wrapper {
       width: 90%;
       flex-direction: column;
       align-items: stretch;
-    }
+    } */
     
     /* Колоните (лява и дясна) заемат цяла ширина */
-    .left-col, .right-col {
+    /* .left-col, .right-col {
       width: 100%;
       padding: 3px;
       font-size: 12px;
       max-height: 200px;
       /* flex: 1;  */
-      overflow-y: auto;
+      /* overflow-y: auto; */ */
       /* За ограничаване на височината:
          max-height: 200px; overflow-y: auto; */
-    }
+    /* } */
     
     /* Drop зоните за matching въпросите */
-    .droppable-zone {
+    /* .droppable-zone {
       width: 100%;
       min-height: 50px;
       box-sizing: border-box;
-    }
+    } */
     
     /* Намаляване на размера на заглавието "Въпрос" и отстоянията */
-    #question-title {
-      font-size: 16px;  /* По-малък шрифт */
-      margin: 3px 0;    /* Минимални отстояния */
-      padding:3px 0 0 0;
-    }
+    /* #question-title { */
+      /* font-size: 16px;  По-малък шрифт */
+      /* margin: 3px 0;    Минимални отстояния */
+      /* padding:3px 0 0 0; */
+    /* } */
     
     /* Центриране на бутоните (например, "Провери свързването") */
-    .matching-wrapper > button,
+    /* .matching-wrapper > button,
     .check-btn-container button {
       display: block;
       margin: 3px auto;
       font-size: 12px;
       padding: 3px 6px;
-    }
+    } */
     
     /* Отделен контейнер за matching въпросите */
-    #matching-container {
+    /* #matching-container {
       width: 90%;
       max-width: 350px;
       font-size: 12px;
       padding: 3px;
       margin: 0 auto;
     }
-    
+     */
     /* Допълнителна стилизация за елементи във matching въпросите */
-    .draggable-item,
+    /* .draggable-item,
     .zone-label,
     .droppable-zone {
       font-size: 12px;
@@ -388,7 +391,7 @@
   }
   .droppable-zone {
     /* flex: 1; */
-    border: 2px dashed #ccc;
+    /* border: 2px dashed #ccc;
     min-height: 40px;
     padding: 3px;
     background: #fff;
@@ -399,7 +402,7 @@
   }
   .dragging {
     opacity: 0.5;
-  }
+  } */
   /* Героят (🙂) */
   #hero {
     position: absolute;
@@ -407,9 +410,9 @@
     pointer-events: none;
     font-size: 2rem;
     text-align: center;
-  }
+  } */
   /* Респонсив, ако желаете */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .card-container {
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
@@ -418,7 +421,7 @@
       aspect-ratio: 1 / 1;
       max-width: 600px;
     }
-  }
+  } */
   #nvo-year-select {
     width: 80%;
     padding: 10px;
@@ -428,5 +431,122 @@
   /* Стил за бутона за музика */
 #music-toggle-btn {
   margin-left: 10px; /* Отстояние спрямо другите бутони */
+}
+/* Медийна заявка за средни екрани (769px до 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Контейнерът с matching въпросите остава с редово подреждане */
+  .matching-wrapper {
+    width: 90%;
+    flex-direction: row; /* Подредба в редове */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 5px auto;
+  }
+  
+  /* Лявата и дясната колона заемат приблизително половината от ширината */
+  .left-col, .right-col {
+    width: 48%;
+    padding: 5px;
+    font-size: 14px;
+    max-height: 250px; /* С леко по-голяма максимална височина */
+    overflow-y: auto;
+  }
+  
+  /* Drop зоните – адаптирани за среден екран */
+  .droppable-zone {
+    width: 100%;
+    min-height: 50px;
+    box-sizing: border-box;
+  }
+  
+  /* Заглавието "Въпрос" – леко по-голямо, с минимални отстояния */
+  #question-title {
+    font-size: 18px;
+    margin: 5px 0;
+    padding: 0;
+  }
+  
+  /* Центриране и стилизиране на бутоните за проверка */
+  .matching-wrapper > button,
+  .check-btn-container button {
+    display: block;
+    margin: 10px auto;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  /* Ако имате отделен контейнер за matching въпросите */
+  #matching-container {
+    width: 90%;
+    max-width: 500px;
+    font-size: 14px;
+    padding: 5px;
+    margin: 0 auto;
+  }
+  
+  .draggable-item,
+  .zone-label,
+  .droppable-zone {
+    font-size: 14px;
+  }
+}
+
+/* Медийна заявка за малки екрани (до 768px) */
+@media (max-width: 768px) {
+  /* Подреждане на matching въпросите вертикално */
+  .matching-wrapper {
+    width: 90%;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 5px auto;
+  }
+  
+  /* Колоните заемат цяла ширина */
+  .left-col, .right-col {
+    width: 100%;
+    padding: 3px;
+    font-size: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  /* Drop зоните – гарантира, че са 100% ширина и с минимална височина */
+  .droppable-zone {
+    width: 100%;
+    min-height: 50px;
+    box-sizing: border-box;
+  }
+  
+  /* Заглавието "Въпрос" – намаляване на размера и отстоянията */
+  #question-title {
+    font-size: 16px;
+    margin: 3px 0;
+    padding: 3px 0 0 0;
+  }
+  
+  /* Центриране на бутоните за проверка */
+  .matching-wrapper > button,
+  .check-btn-container button {
+    display: block;
+    margin: 3px auto;
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+  
+  /* Контейнер за matching въпросите */
+  #matching-container {
+    width: 90%;
+    max-width: 350px;
+    font-size: 12px;
+    padding: 3px;
+    margin: 0 auto;
+  }
+  
+  .draggable-item,
+  .zone-label,
+  .droppable-zone {
+    font-size: 12px;
+  }
 }
 
