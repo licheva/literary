@@ -391,7 +391,7 @@
     .left-col, .right-col {
       width: 100%;
       padding: 3px;
-      font-size: 12px;
+      font-size: 14px;
       max-height: 200px;
       /* flex: 1;  */
       overflow-y: auto;
