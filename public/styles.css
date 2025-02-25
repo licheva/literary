@@ -308,47 +308,60 @@
     }
   } */
   @media (max-width: 768px) {
-    /* Съществуващи правила за drop зоните и редовете */
-    .droppable-zone {
-      width: 100%;
-      min-height: 50px;
-    }
-    
-    .matching-right-item-row {
+    /* Подреждане на matching въпросите вертикално */
+    .matching-wrapper {
       flex-direction: column;
       align-items: stretch;
     }
     
-    /* Нови правила за matching контейнера и колоните */
-    #matching-container {
-      width: 80%;
-      max-width: 350px;  /* Намалена максимална ширина */
-      font-size: 12px;   /* Намален размер на шрифта */
-      padding: 3px;
-      margin: 0 auto;
-    }
-    
+    /* Колоните (лява и дясна) заемат цяла ширина */
     .left-col, .right-col {
+      width: 100%;
       padding: 3px;
       font-size: 12px;
-      flex: 1;          /* Позволява на колоните да растат */
-    overflow-y: auto;
-    overflow-x: auto;
+      max-height: 200px;
+       overflow-y: auto;
+      /* За ограничаване на височината:
+         max-height: 200px; overflow-y: auto; */
     }
     
-    .draggable-item,
-    .zone-label,
+    /* Drop зоните за matching въпросите */
     .droppable-zone {
-      font-size: 12px;
+      width: 100%;
+      min-height: 50px;
+      box-sizing: border-box;
     }
     
-    /* Стилове за бутона "Провери свързването", за отделен контейнер */
+    /* Намаляване на размера на заглавието "Въпрос" и отстоянията */
+    #question-title {
+      font-size: 16px;  /* По-малък шрифт */
+      margin: 3px 0;    /* Минимални отстояния */
+      padding: 0;
+    }
+    
+    /* Центриране на бутоните (например, "Провери свързването") */
     .matching-wrapper > button,
     .check-btn-container button {
       display: block;
       margin: 5px auto;
       font-size: 12px;
       padding: 3px 6px;
+    }
+    
+    /* Ако използвате отделен контейнер за matching въпросите */
+    #matching-container {
+      width: 90%;
+      max-width: 350px;
+      font-size: 12px;
+      padding: 3px;
+      margin: 0 auto;
+    }
+    
+    /* Допълнителна стилизация за елементи във matching въпросите */
+    .draggable-item,
+    .zone-label,
+    .droppable-zone {
+      font-size: 12px;
     }
   }
   
