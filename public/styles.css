@@ -294,11 +294,23 @@
   }
   
   /* Медийна заявка за мобилни устройства */
-  @media (max-width: 768px) {
-    .droppable-zone {
+  /* @media (max-width: 768px) { */
+    /* .droppable-zone { */
       /* Ако е необходимо, адаптирайте височината/ширината */
-      width: 100%;
+      /* width: 100%; */
       /* Може да зададем минимална височина, за да са добре видими */
+      /* min-height: 50px;
+    }
+    
+    .matching-right-item-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  } */
+  @media (max-width: 768px) {
+    /* Съществуващи правила за drop зоните и редовете */
+    .droppable-zone {
+      width: 100%;
       min-height: 50px;
     }
     
@@ -306,7 +318,37 @@
       flex-direction: column;
       align-items: stretch;
     }
+    
+    /* Нови правила за matching контейнера и колоните */
+    #matching-container {
+      width: 90%;
+      max-width: 350px;  /* Намалена максимална ширина */
+      font-size: 14px;   /* Намален размер на шрифта */
+      padding: 5px;
+      margin: 0 auto;
+    }
+    
+    .left-col, .right-col {
+      padding: 5px;
+      font-size: 14px;
+    }
+    
+    .draggable-item,
+    .zone-label,
+    .droppable-zone {
+      font-size: 14px;
+    }
+    
+    /* Стилове за бутона "Провери свързването", ако е в отделен контейнер */
+    .matching-wrapper > button,
+    .check-btn-container button {
+      display: block;
+      margin: 10px auto;
+      font-size: 14px;
+      padding: 6px 12px;
+    }
   }
+  
   .draggable-item {
     background: #f0f0f0;
     margin: 5px 0;
