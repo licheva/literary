@@ -321,38 +321,41 @@
     
     /* Нови правила за matching контейнера и колоните */
     #matching-container {
-      width: 90%;
+      width: 80%;
       max-width: 350px;  /* Намалена максимална ширина */
-      font-size: 14px;   /* Намален размер на шрифта */
-      padding: 5px;
+      font-size: 12px;   /* Намален размер на шрифта */
+      padding: 3px;
       margin: 0 auto;
     }
     
     .left-col, .right-col {
-      padding: 5px;
-      font-size: 14px;
+      padding: 3px;
+      font-size: 12px;
+      flex: 1;          /* Позволява на колоните да растат */
+    overflow-y: auto;
+    overflow-x: auto;
     }
     
     .draggable-item,
     .zone-label,
     .droppable-zone {
-      font-size: 14px;
+      font-size: 12px;
     }
     
-    /* Стилове за бутона "Провери свързването", ако е в отделен контейнер */
+    /* Стилове за бутона "Провери свързването", за отделен контейнер */
     .matching-wrapper > button,
     .check-btn-container button {
       display: block;
-      margin: 10px auto;
-      font-size: 14px;
-      padding: 6px 12px;
+      margin: 5px auto;
+      font-size: 12px;
+      padding: 3px 6px;
     }
   }
   
   .draggable-item {
     background: #f0f0f0;
-    margin: 5px 0;
-    padding: 5px;
+    margin: 3px 0;
+    padding: 3px;
     cursor: move;
     border: 1px solid #ccc;
   }
