@@ -327,8 +327,8 @@
   /* Заглавието "Въпрос" – леко по-голямо, с минимални отстояния */
   #question-title {
     font-size: 18px;
-    margin: 10px 0;
-    padding: 5px 0;
+    margin: 5px 0;
+    padding: 0;
   }
   
   /* Центриране и стилизиране на бутоните за проверка */
@@ -376,7 +376,16 @@
       flex-direction: column;
       align-items: stretch;
     }
-    
+    /* Намаляване на междуредието за елементи с текст */
+  #question-title, .zone-label, .draggable-item, .droppable-zone {
+    line-height: 1.2;
+  }
+
+  /* Добавяне на padding отгоре, ако първият ред не се вижда */
+  #question-text {
+    padding-top: 5px;
+    overflow: visible;
+  }
     /* Колоните (лява и дясна) заемат цяла ширина */
     .left-col, .right-col {
       width: 100%;
