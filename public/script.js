@@ -730,45 +730,11 @@ function getShortestPathDistance(maze, startPos) {
   }
   return Infinity;
 }
-
+//Аудио
 // Аудио
 let backgroundMusic, doorSound, correctSound, wrongSound;
 
-// DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
- 
-    // съществуващ код
-    
-    // Обработка за бутона "НВО"
-    document.getElementById('nvo-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('hidden');
-      nvoModal.classList.add('visible');
-    });
-  
-    // Затваряне на модала
-    document.getElementById('nvo-close-btn').addEventListener('click', () => {
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-    });
-  
-    // Обработка за бутона "Вход" в модала за НВО
-    document.getElementById('nvo-select-btn').addEventListener('click', () => {
-      const select = document.getElementById('nvo-year-select');
-      const selectedKey = select.value; // напр. "nvo2022"
-      console.log("Избраният ключ е:", selectedKey);
-      if (!selectedKey) {
-        alert("Моля, изберете година!");
-        return;
-      }
-      const nvoModal = document.getElementById('nvo-modal');
-      nvoModal.classList.remove('visible');
-      nvoModal.classList.add('hidden');
-      selectAuthor(selectedKey);
-    
-  
-  });
   // Аудио инициализация
   backgroundMusic = new Audio('audio/epic-adventure.mp3');
   backgroundMusic.loop = true;
@@ -776,10 +742,128 @@ document.addEventListener('DOMContentLoaded', () => {
   
   doorSound = new Audio('audio/door-creak.mp3');
   doorSound.volume = 0.2;
+  
   correctSound = new Audio('audio/correct.mp3');
   correctSound.volume = 0.5;
+  
   wrongSound = new Audio('audio/wrong.mp3');
   wrongSound.volume = 0.5;
+  
+  // Обработка за слайдера за регулиране на громкостта
+  const volumeControl = document.getElementById('volume-control');
+  volumeControl.addEventListener('input', function() {
+    const vol = parseFloat(this.value);
+    backgroundMusic.volume = vol;
+    doorSound.volume = vol;
+    // Ако желаете да регулирате и останалите звукови ефекти:
+    correctSound.volume = vol;
+    wrongSound.volume = vol;
+  });
+
+  
+  // Обработка за бутона "НВО" – отваряне на модала
+  document.getElementById('nvo-btn').addEventListener('click', () => {
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('hidden');
+    nvoModal.classList.add('visible');
+  });
+  
+  // Обработка за затваряне на модала за НВО
+  document.getElementById('nvo-close-btn').addEventListener('click', () => {
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('visible');
+    nvoModal.classList.add('hidden');
+  });
+  
+  // Обработка за бутона "Вход" в модала за НВО
+  document.getElementById('nvo-select-btn').addEventListener('click', () => {
+    const select = document.getElementById('nvo-year-select');
+    const selectedKey = select.value; // напр. "nvo2022"
+    console.log("Избраният ключ е:", selectedKey);
+    if (!selectedKey) {
+      alert("Моля, изберете година!");
+      return;
+    }
+    const nvoModal = document.getElementById('nvo-modal');
+    nvoModal.classList.remove('visible');
+    nvoModal.classList.add('hidden');
+    selectAuthor(selectedKey);
+  });
+  
+  // Обработка за бутона за музика (пауза/възпроизвеждане)
+  const musicToggleBtn = document.getElementById('music-toggle-btn');
+  if(musicToggleBtn){
+    musicToggleBtn.addEventListener('click', () => {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        musicToggleBtn.textContent = "Пауза музика";
+      } else {
+        backgroundMusic.pause();
+        musicToggleBtn.textContent = "Възпроизведи музика";
+      }
+    });
+  }
+  
+  // До логин
+// });
+
+// Аудио
+// let backgroundMusic, doorSound, correctSound, wrongSound;
+
+// // DOMContentLoaded
+// document.addEventListener('DOMContentLoaded', () => {
+  
+//     // Обработка за бутона "НВО"
+//     document.getElementById('nvo-btn').addEventListener('click', () => {
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('hidden');
+//       nvoModal.classList.add('visible');
+//     });
+  
+//     // Затваряне на модала
+//     document.getElementById('nvo-close-btn').addEventListener('click', () => {
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('visible');
+//       nvoModal.classList.add('hidden');
+//     });
+  
+//     // Обработка за бутона "Вход" в модала за НВО
+//     document.getElementById('nvo-select-btn').addEventListener('click', () => {
+//       const select = document.getElementById('nvo-year-select');
+//       const selectedKey = select.value; // напр. "nvo2022"
+//       console.log("Избраният ключ е:", selectedKey);
+//       if (!selectedKey) {
+//         alert("Моля, изберете година!");
+//         return;
+//       }
+//       const nvoModal = document.getElementById('nvo-modal');
+//       nvoModal.classList.remove('visible');
+//       nvoModal.classList.add('hidden');
+//       selectAuthor(selectedKey);
+//       const musicToggleBtn = document.getElementById('music-toggle-btn');
+  
+//       musicToggleBtn.addEventListener('click', () => {
+//         if (backgroundMusic.paused) {
+//           backgroundMusic.play();
+//           musicToggleBtn.textContent = "Пауза музика";
+//         } else {
+//           backgroundMusic.pause();
+//           musicToggleBtn.textContent = "Възпроизведи музика";
+//         }
+//       });
+  
+//   });
+//   // Аудио инициализация
+//   backgroundMusic = new Audio('audio/epic-adventure.mp3');
+//   backgroundMusic.loop = true;
+//   backgroundMusic.volume = 0.2;
+  
+//   doorSound = new Audio('audio/door-creak.mp3');
+//   doorSound.volume = 0.2;
+//   correctSound = new Audio('audio/correct.mp3');
+//   correctSound.volume = 0.5;
+//   wrongSound = new Audio('audio/wrong.mp3');
+//   wrongSound.volume = 0.5;
   
   // Логин
   const loginModal = document.getElementById('login-modal');

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Литературен лабиринт – Escape Room</title>
   <!-- Примерен шрифт от Google Fonts -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
@@ -25,7 +25,7 @@
     
     <!-- 2) Екран за лабиринта (скрит по начало) -->
     <div id="game-container" class="screen hidden">
-      <header id="top-bar">
+      <!-- <header id="top-bar">
         <h1 id="labyrinth-title">Лабиринт</h1>
         <div id="user-info">
           Потребител: <span id="display-username"></span> |
@@ -36,7 +36,25 @@
           <button id="back-to-authors" class="nav-btn">Назад към авторите</button>
           <button id="next-level" class="nav-btn hidden">Следващо ниво</button>
         </div>
+      </header> -->
+      
+      <header id="top-bar">
+        <h1 id="labyrinth-title">Лабиринт</h1>
+        <div id="user-info">
+          Потребител: <span id="display-username"></span> |
+          Ниво: <span id="current-level">1</span> |
+          Точки: <span id="score">0</span>
+        </div>
+        <div id="button-row">
+          <button id="back-to-authors" class="nav-btn">Назад към авторите</button>
+          <button id="next-level" class="nav-btn hidden">Следващо ниво</button>
+          <!-- Бутон за управление на фоновата музика -->
+          <button id="music-toggle-btn" class="btn">Пауза музика</button>
+        </div>
+        <label for="volume-control">Громкост:</label>
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.2">
       </header>
+
       <!-- Контейнер за лабиринта (квадратен, респонсив) -->
       <div id="maze-container-active">
         <div id="maze-active"></div>
@@ -298,6 +316,7 @@
     </div>
   </div>
 </div>
+
   </div><!-- #main-container -->
   
   

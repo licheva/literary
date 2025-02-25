@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    /* font-family: 'Baloo 2', cursive, sans-serif; */
+    font-family: 'Baloo 2', cursive, sans-serif;
     /* Запазваме фоновото изображение */
     background: url("images/game1.jpg") repeat center center;
   }
@@ -203,7 +203,7 @@
     background: #ff8800;
     transform: scale(0.98);
   }
-  /* Лабиринт – запазваме квадратен формат, но вече е вътре в #main-container */
+  /* Лабиринт – запазваме квадратен формат,  вътре в #main-container */
   #maze-container-active {
     position: relative;
     width: clamp(300px, 50vw, 600px);
@@ -274,7 +274,7 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin: 5px 0;
+    margin: 3px 0;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -288,9 +288,11 @@
   }
   .droppable-zone {
     border: 2px dashed #ccc;
-    padding: 10px;
-    margin: 5px;
+    padding: 5px;
+    margin: 3px;
     box-sizing: border-box;
+    min-width: 50px;
+    
   }
   
   /* Медийна заявка за мобилни устройства */
@@ -350,7 +352,7 @@
       padding: 3px 6px;
     }
     
-    /* Ако използвате отделен контейнер за matching въпросите */
+    /* Отделен контейнер за matching въпросите */
     #matching-container {
       width: 90%;
       max-width: 350px;
@@ -417,3 +419,15 @@
       max-width: 600px;
     }
   }
+  #nvo-year-select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  /* Стил за бутона за музика */
+#music-toggle-btn {
+  margin-left: 10px; /* Отстояние спрямо другите бутони */
+}
+
+  
