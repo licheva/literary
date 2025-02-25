@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Аудио инициализация
   backgroundMusic = new Audio('audio/epic-adventure.mp3');
   backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.2;
+  backgroundMusic.volume = 0.5;
   
   doorSound = new Audio('audio/door-creak.mp3');
   doorSound.volume = 0.2;
