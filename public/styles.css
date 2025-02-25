@@ -285,6 +285,8 @@
     border: 2px solid #aaa;
     padding: 2px;
     background: #fafafa;
+    overflow-y: auto;
+    overflow-x: auto;
   }
   .droppable-zone {
     border: 2px dashed #ccc;
