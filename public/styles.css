@@ -327,7 +327,7 @@
   /* Заглавието "Въпрос" – леко по-голямо, с минимални отстояния */
   #question-title {
     font-size: 18px;
-    margin: 5px 0;
+    margin: 0;
     padding: 0;
   }
   
