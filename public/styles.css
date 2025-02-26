@@ -501,13 +501,20 @@
 }
 #music-controls {
   display: flex;
-  align-items: center; /* Центриране по вертикала */
-  gap: 10px; /* Разстояние между бутона и плъзгача */
-  padding-left: 10px;
-  padding-top: 5px;
+  align-items: flex-start;  /* Подравняване към горната част */
+  gap: 10px;                /* Разстояние между елементите */
 }
-#volume-control{
-  padding-left: 10px;
+
+/* Лейбълът "Сила на звука:" */
+#volume-label {
+  text-align: left;
+  margin-right: 10px;  /* Разстояние между лейбъла и плъзгача */
 }
+
+/* Плъзгачът – малко спускаме надолу */
+#volume-control {
+  margin-top: 5px;  /* Регулирайте стойността според нуждите */
+}
+
 
 
