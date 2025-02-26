@@ -355,6 +355,17 @@
     font-size: 14px;
   }
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  #maze-container-active {
+    width: 80vw;
+    aspect-ratio: 1 / 1;
+    max-width: 800px;
+  }
+}
+
   /* Медийна заявка за мобилни устройства */
   /* @media (max-width: 768px) { */
     /* .droppable-zone { */
