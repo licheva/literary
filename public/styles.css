@@ -504,6 +504,10 @@
   align-items: center; /* Центриране по вертикала */
   gap: 10px; /* Разстояние между бутона и плъзгача */
   padding-left: 10px;
+  padding-top: 5px;
+}
+#volume-control{
+  padding-left: 10px;
 }
 
 
