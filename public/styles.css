@@ -501,20 +501,27 @@
 }
 #music-controls {
   display: flex;
-  align-items: flex-start;  /* Подравняване към горната част */
-  gap: 10px;                /* Разстояние между елементите */
+  align-items: center; /* Центриране по вертикала */
+  gap: 10px; /* Разстояние между бутона и плъзгача */
+  padding-left: 10px;
+  padding-top: 5px;
+}
+#volume-control{
+  padding-left: 10px;
+}
+#music-controls {
+  display: flex;
+  align-items: flex-start; /* Подравняване към горната част */
+  gap: 10px;              /* Разстояние между елементите */
 }
 
-/* Лейбълът "Сила на звука:" */
 #volume-label {
-  text-align: left;
-  margin-right: 10px;  /* Разстояние между лейбъла и плъзгача */
+  margin-right: 10px;     /* Изместете етикета наляво (или регулирайте според нуждите) */
+  text-align: left;       /* Текстът да е подравнен вляво */
 }
 
-/* Плъзгачът – малко спускаме надолу */
 #volume-control {
-  margin-top: 5px;  /* Регулирайте стойността според нуждите */
+  margin-top: 5px;        /* Спуска плъзгача малко надолу */
 }
-
 
 
